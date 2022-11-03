@@ -23,3 +23,5 @@ position = Vector2( 540, -80 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 360, 880 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
