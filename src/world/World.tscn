@@ -6,20 +6,13 @@
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="TileMap" type="TileMap" parent="."]
+cell_size = Vector2( 80, 80 )
+format = 1
+
 [node name="WorldObjects" type="Node2D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
-
-[node name="SpawnPoints" type="Node2D" parent="."]
-
-[node name="Position2D" type="Position2D" parent="SpawnPoints"]
-position = Vector2( 180, -80 )
-
-[node name="Position2D2" type="Position2D" parent="SpawnPoints"]
-position = Vector2( 360, -80 )
-
-[node name="Position2D3" type="Position2D" parent="SpawnPoints"]
-position = Vector2( 540, -80 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 240, 300 )
@@ -27,5 +20,3 @@ position = Vector2( 240, 300 )
 [node name="GUI" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

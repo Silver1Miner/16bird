@@ -8,11 +8,6 @@ export var weaknesses = []
 export var resistances = []
 export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
 
-func _physics_process(delta: float) -> void:
-	position.y += speed * delta
-	if position.y > 1280 + 40:
-		queue_free()
-
 func _set_hp(new_hp: int) -> void:
 	hp = clamp(new_hp, 0, max_hp)
 	if hp <= 0:
