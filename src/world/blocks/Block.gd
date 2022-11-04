@@ -1,14 +1,17 @@
 extends Node2D
 
 onready var obj_registry = get_parent()
-export var hp = 50 setget _set_hp
+export var hp = 20 setget _set_hp
+export var speed = 100
 export var max_hp = 50
 export var weaknesses = []
 export var resistances = []
 export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
 
-func _ready():
-	pass # Replace with function body.
+func _physics_process(delta: float) -> void:
+	position.y += speed * delta
+	if position.y > 1280 + 40:
+		queue_free()
 
 func _set_hp(new_hp: int) -> void:
 	hp = clamp(new_hp, 0, max_hp)

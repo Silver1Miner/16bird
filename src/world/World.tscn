@@ -22,6 +22,10 @@ position = Vector2( 360, -80 )
 position = Vector2( 540, -80 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 360, 880 )
+position = Vector2( 240, 300 )
+
+[node name="GUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
