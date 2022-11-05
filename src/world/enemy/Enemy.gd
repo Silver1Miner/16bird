@@ -2,16 +2,16 @@ extends Node2D
 
 signal enemy_destroyed()
 onready var obj_registry = get_node_or_null("../../WorldObjects")
-export var hp = 20 setget _set_hp
-export var speed = 50
-export var max_hp = 50
+export var hp = 80 setget _set_hp
+export var speed = 80
+export var max_hp = 100
 export var weaknesses = []
 export var resistances = []
 export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
 
 func _ready() -> void:
 	add_to_group("enemy")
-	$Gun/Timer.wait_time = 1.0
+	$Gun/Timer.wait_time = 2.0
 	$Gun/Timer.start()
 	$Gun.target_group = "player"
 

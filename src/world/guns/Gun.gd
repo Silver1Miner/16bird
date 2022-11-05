@@ -24,6 +24,8 @@ func _on_Timer_timeout():
 			var bullet_instance_2 = Bullet.instance()
 			get_parent().get_parent().call_deferred("add_child", bullet_instance_1)
 			get_parent().get_parent().call_deferred("add_child", bullet_instance_2)
+			bullet_instance_1.target_group = target_group
+			bullet_instance_2.target_group = target_group
 			bullet_instance_1.global_position = global_position
 			bullet_instance_2.global_position = global_position
 			bullet_instance_1.velocity = velocity.rotated(deg2rad(5))

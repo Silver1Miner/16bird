@@ -10,6 +10,7 @@ var started = false
 var rng = RandomNumberGenerator.new()
 var enemy = preload("res://src/world/enemy/Enemy.tscn")
 var counter = 0
+var max_counter = 0
 
 func _ready():
 	deactivate()
@@ -50,13 +51,15 @@ func _on_Player_player_action():
 		activate()
 
 func _on_Player_player_destroyed():
-	$HUD.game_over()
+	$HUD.game_over(counter, max_counter)
 
 func _on_HUD_game_over_acknowledged():
 	deactivate()
 
 func _on_enemy_destroyed() -> void:
 	counter += 1
+	if counter > max_counter:
+		max_counter = counter
 	$HUD/Score/Score.text = str(counter)
 
 func _on_Player_hp_changed(hp):
