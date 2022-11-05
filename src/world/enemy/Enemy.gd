@@ -7,7 +7,7 @@ export var speed = 80
 export var max_hp = 100
 export var weaknesses = []
 export var resistances = []
-export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
+export var Explosion: PackedScene = preload("res://src/world/effects/Explosion.tscn")
 
 func _ready() -> void:
 	add_to_group("enemy")

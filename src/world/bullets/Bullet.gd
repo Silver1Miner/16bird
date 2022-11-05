@@ -6,7 +6,7 @@ export var damage = 10
 export var damage_type = 0
 export var piercing = false
 export var explosive = false
-export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
+export var Explosion: PackedScene = preload("res://src/world/effects/Explosion.tscn")
 var target_group = "player"
 
 func _ready():

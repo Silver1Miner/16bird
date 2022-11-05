@@ -19,7 +19,7 @@ var slide := 30
 onready var obj_registry = get_parent()
 export var hp := 100 setget _set_hp
 var max_hp = 100
-export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
+export var Explosion: PackedScene = preload("res://src/world/effects/Explosion.tscn")
 
 func _ready() -> void:
 	add_to_group("player")
