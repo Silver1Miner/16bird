@@ -1,0 +1,26 @@
+[gd_scene format=2]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Campaign" type="Button" parent="."]
+margin_left = 240.0
+margin_top = 180.0
+margin_right = 400.0
+margin_bottom = 220.0
+text = "CAMPAIGN"
+
+[node name="Custom" type="Button" parent="."]
+margin_left = 240.0
+margin_top = 240.0
+margin_right = 400.0
+margin_bottom = 280.0
+text = "CUSTOM"
+
+[node name="Settings" type="Button" parent="."]
+margin_left = 240.0
+margin_top = 300.0
+margin_right = 400.0
+margin_bottom = 340.0
+text = "SETTINGS"

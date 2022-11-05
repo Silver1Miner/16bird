@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/world/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/world/World.gd" type="Script" id=2]
+[ext_resource path="res://src/ui/HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/world/enemy/EnemyLevel.tscn" type="PackedScene" id=4]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
@@ -12,11 +14,11 @@ format = 1
 
 [node name="WorldObjects" type="Node2D" parent="."]
 
+[node name="Player" parent="WorldObjects" instance=ExtResource( 1 )]
+position = Vector2( 120, 120 )
+
+[node name="EnemyLevel" parent="." instance=ExtResource( 4 )]
+
 [node name="Timer" type="Timer" parent="."]
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 240, 300 )
-
-[node name="GUI" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="HUD" parent="." instance=ExtResource( 3 )]

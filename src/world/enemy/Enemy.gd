@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var obj_registry = get_parent()
+onready var obj_registry = get_node_or_null("../../WorldObjects")
 export var hp = 20 setget _set_hp
 export var speed = 100
 export var max_hp = 50
@@ -14,12 +14,14 @@ func _set_hp(new_hp: int) -> void:
 		if obj_registry:
 			var explosion = Explosion.instance()
 			explosion.damage = 0
-			explosion.size_scale = 0.5
+			explosion.size_scale = 1
 			explosion.global_position = global_position
 			obj_registry.call_deferred("add_child", explosion)
 		queue_free()
 
 func take_damage(damage: int, damage_type: int) -> void:
+	if global_position.x > 1280:
+		return
 	var damage_amount = damage
 	if damage_type in weaknesses:
 		damage_amount *= 2

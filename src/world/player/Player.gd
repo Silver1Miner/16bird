@@ -27,7 +27,7 @@ func _physics_process(delta) -> void:
 	vel.y += gravity * delta
 	#if Input.is_action_just_pressed("ui_accept"):
 	#	vel.y -= jump_force
-	position.y = clamp(position.y, 0, 720)
+	position.y = clamp(position.y, 1, 360)
 	position += vel * delta
 
 func _unhandled_input(event) -> void:
@@ -76,9 +76,5 @@ func take_damage(damage: int, damage_type: int) -> void:
 func _on_Hitbox_area_entered(area):
 	if not active:
 		return
-	var id = -1
-	if area.has_method("get_id"):
-		id = area.get_id()
 	if area.get_parent() and area.get_parent().has_method("_set_hp"):
 		take_damage(area.get_parent().hp, 0)
-	print("collided with: ", id)
