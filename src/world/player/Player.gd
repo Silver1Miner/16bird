@@ -1,5 +1,7 @@
 extends Node2D
 
+signal player_action()
+signal player_destroyed()
 signal fire()
 signal hp_changed(hp)
 
@@ -19,20 +21,31 @@ var max_hp = 100
 export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
 
 func _ready() -> void:
+	add_to_group("player")
+	$Gun.target_group = "enemy"
+	$Gun.bullet_count = 2
+	$Gun/Timer.wait_time = 0.1
+	$Gun.velocity = Vector2(800, 0)
 	_set_hp(hp)
+	set_physics_process(false)
+
+func activate() -> void:
+	active = true
+	$Gun/Timer.start()
+	set_physics_process(true)
 
 func _physics_process(delta) -> void:
-	if not active:
-		return
-	vel.y += gravity * delta
+	vel.y += clamp(gravity * delta, -120, 120)
 	#if Input.is_action_just_pressed("ui_accept"):
 	#	vel.y -= jump_force
 	position.y = clamp(position.y, 1, 360)
 	position += vel * delta
+	if position.y > 320:
+		take_damage(100, 0)
+	elif position.y < 40:
+		take_damage(100, 0)
 
 func _unhandled_input(event) -> void:
-	if not active:
-		return
 	if event is InputEventScreenDrag:
 		var swipe = event.relative
 		if swipe.x > slide:
@@ -40,16 +53,22 @@ func _unhandled_input(event) -> void:
 			if timer.is_stopped():
 				emit_signal("fire")
 				timer.start(0.2)
+			emit_signal("player_action")
 	elif event is InputEventScreenTouch:
+		print("touch")
 		var touch = event.position
 		if touch.x < 0 or touch.x > 1280:
 			return
 		vel.y -= jump_force
+		emit_signal("player_action")
 	if event.is_action_pressed("ui_up"):
+		print("up")
 		vel.y -= jump_force
+		emit_signal("player_action")
 	elif event.is_action_pressed("ui_accept"):
+		print("space")
 		vel.y -= jump_force
-
+		emit_signal("player_action")
 
 func _set_hp(new_hp: int) -> void:
 	if hp != new_hp:
@@ -63,9 +82,22 @@ func _set_hp(new_hp: int) -> void:
 			explosion.size_scale = 0.5
 			explosion.global_position = global_position
 			obj_registry.call_deferred("add_child", explosion)
-		queue_free()
+		emit_signal("player_destroyed")
+		visible = false
+		$Hitbox/CollisionShape2D.set_deferred("disabled", true)
+		$Gun/Timer.stop()
+
+func respawn() -> void:
+	_set_hp(max_hp)
+	$Hitbox/CollisionShape2D.set_deferred("disabled", false)
+	global_position.y = 180
+	set_physics_process(false)
+	vel.y = 0
+	visible = true
 
 func take_damage(damage: int, damage_type: int) -> void:
+	if hp <= 0:
+		return
 	var damage_amount = damage
 	if damage_type in weaknesses:
 		damage_amount *= 2

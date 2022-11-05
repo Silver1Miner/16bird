@@ -12,13 +12,60 @@ script = ExtResource( 2 )
 cell_size = Vector2( 80, 80 )
 format = 1
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 640.0
+margin_bottom = 40.0
+color = Color( 1, 0, 0, 0.298039 )
+
+[node name="Label" type="Label" parent="ColorRect"]
+margin_left = 240.0
+margin_right = 400.0
+margin_bottom = 40.0
+text = "INSTANT DEATH"
+align = 1
+valign = 2
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_top = 320.0
+margin_right = 640.0
+margin_bottom = 360.0
+color = Color( 1, 0, 0, 0.298039 )
+
+[node name="Label2" type="Label" parent="ColorRect2"]
+margin_left = 240.0
+margin_right = 400.0
+margin_bottom = 40.0
+text = "INSTANT DEATH"
+align = 1
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
 [node name="WorldObjects" type="Node2D" parent="."]
 
 [node name="Player" parent="WorldObjects" instance=ExtResource( 1 )]
-position = Vector2( 120, 120 )
+position = Vector2( 120, 180 )
 
 [node name="EnemyLevel" parent="." instance=ExtResource( 4 )]
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 680, 80 )
+
+[node name="Position2D2" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 680, 180 )
+
+[node name="Position2D3" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 680, 280 )
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
+margin_right = 640.0
+margin_bottom = 360.0
+
+[connection signal="hp_changed" from="WorldObjects/Player" to="." method="_on_Player_hp_changed"]
+[connection signal="player_action" from="WorldObjects/Player" to="." method="_on_Player_player_action"]
+[connection signal="player_destroyed" from="WorldObjects/Player" to="." method="_on_Player_player_destroyed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="game_over_acknowledged" from="HUD" to="." method="_on_HUD_game_over_acknowledged"]

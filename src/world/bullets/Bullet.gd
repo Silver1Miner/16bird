@@ -1,23 +1,24 @@
 extends Area2D
 
 onready var obj_registry = get_parent()
-export var speed = 400
+export var velocity = Vector2(400, 0)
 export var damage = 10
 export var damage_type = 0
 export var piercing = false
 export var explosive = false
 export var Explosion: PackedScene = preload("res://src/World/Effects/Explosion.tscn")
+var target_group = "player"
 
 func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta: float) -> void:
-	position.x += speed * delta
+	position += velocity * delta
 	if position.x < -40 or position.x > 1280 + 40:
 		queue_free()
 
 func _on_Bullet_area_entered(area):
-	if damage > 0 and area.get_parent().has_method("take_damage"):
+	if damage > 0 and area.get_parent().is_in_group(target_group) and area.get_parent().has_method("take_damage"):
 		area.get_parent().take_damage(damage, damage_type)
 		if not piercing:
 			queue_free()
