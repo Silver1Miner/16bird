@@ -1,8 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/world/player/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/player/ship_0000.png" type="Texture" id=2]
-[ext_resource path="res://src/world/guns/Gun.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/gui/progress-bar-over - Copy.png" type="Texture" id=4]
 [ext_resource path="res://assets/gui/progress-bar-under.png" type="Texture" id=5]
 [ext_resource path="res://assets/gui/progress-bar-fill.png" type="Texture" id=6]
@@ -16,10 +14,6 @@ script = ExtResource( 1 )
 visible = false
 rotation = 1.5708
 scale = Vector2( 2, 2 )
-texture = ExtResource( 2 )
-
-[node name="Gun" parent="." instance=ExtResource( 3 )]
-position = Vector2( 30, 0 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 
@@ -37,7 +31,8 @@ margin_left = -10.0
 margin_top = -15.0
 margin_right = 10.0
 margin_bottom = -10.0
-value = 50.0
+max_value = 5.0
+value = 2.0
 texture_under = ExtResource( 5 )
 texture_over = ExtResource( 4 )
 texture_progress = ExtResource( 6 )
@@ -56,13 +51,11 @@ margin_bottom = 10.0
 color = Color( 1, 0, 0, 1 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2( 0, 10 )
-emitting = false
+position = Vector2( -10, 10 )
 amount = 64
 lifetime = 0.5
-one_shot = true
-direction = Vector2( 0, 1 )
-gravity = Vector2( 0, 90 )
+direction = Vector2( -1, -1 )
+gravity = Vector2( -98, 0 )
 initial_velocity = 20.0
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]

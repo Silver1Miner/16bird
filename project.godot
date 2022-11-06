@@ -20,7 +20,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Birdbrain"
+config/name="Distracted Driving"
+config/description="Don't Text and Drive"
 run/main_scene="res://src/world/World.tscn"
 boot_splash/show_image=false
 boot_splash/image="res://icon.png"

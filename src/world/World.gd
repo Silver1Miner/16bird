@@ -1,10 +1,12 @@
 extends Node2D
 
-onready var spawn_timer = $Timer
+onready var spawn_timer = $SpawnTimer
+onready var text_timer = $TextTimer
 onready var player = $WorldObjects/Player
 onready var obs = $WorldObjects
 onready var enemy_formation = $EnemyLevel
 onready var spawns = $SpawnPoints
+onready var hud = $HUD
 var ready = false
 var started = false
 var rng = RandomNumberGenerator.new()
@@ -15,7 +17,7 @@ var max_counter = 0
 func _ready():
 	deactivate()
 
-func _on_Timer_timeout():
+func _on_SpawnTimer_timeout():
 	rng.randomize()
 	var pos1 = rng.randi_range(0, 2)
 	var drop1 = enemy.instance()
@@ -24,6 +26,9 @@ func _on_Timer_timeout():
 	drop1.global_position = spawns.get_children()[pos1].global_position
 	enemy_formation.add_child(drop1)
 	spawn_timer.wait_time = 3.0
+
+func _on_TextTimer_timeout():
+	hud.activate_text()
 
 func activate() -> void:
 	if ready and not started:
@@ -51,7 +56,7 @@ func _on_Player_player_action():
 		activate()
 
 func _on_Player_player_destroyed():
-	$HUD.game_over(counter, max_counter)
+	hud.game_over(counter, max_counter)
 
 func _on_HUD_game_over_acknowledged():
 	deactivate()
