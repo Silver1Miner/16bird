@@ -4,23 +4,38 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 
+[node name="Label" type="Label" parent="."]
+margin_top = 60.0
+margin_right = 360.0
+margin_bottom = 140.0
+text = "FOUR BY FOUR"
+align = 1
+valign = 1
+
 [node name="Campaign" type="Button" parent="."]
-margin_left = 240.0
-margin_top = 180.0
-margin_right = 400.0
-margin_bottom = 220.0
+margin_left = 100.0
+margin_top = 380.0
+margin_right = 260.0
+margin_bottom = 420.0
 text = "CAMPAIGN"
 
 [node name="Custom" type="Button" parent="."]
-margin_left = 240.0
-margin_top = 240.0
-margin_right = 400.0
-margin_bottom = 280.0
-text = "CUSTOM"
+margin_left = 100.0
+margin_top = 440.0
+margin_right = 260.0
+margin_bottom = 480.0
+text = "CREATOR"
 
 [node name="Settings" type="Button" parent="."]
-margin_left = 240.0
-margin_top = 300.0
-margin_right = 400.0
-margin_bottom = 340.0
+margin_left = 100.0
+margin_top = 500.0
+margin_right = 260.0
+margin_bottom = 540.0
 text = "SETTINGS"
+
+[node name="Free" type="Button" parent="."]
+margin_left = 100.0
+margin_top = 320.0
+margin_right = 260.0
+margin_bottom = 360.0
+text = "ARCADE"

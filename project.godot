@@ -20,24 +20,23 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Distracted Driving"
-config/description="Don't Text and Drive"
-run/main_scene="res://src/world/World.tscn"
-boot_splash/show_image=false
+config/name="Four by Four"
+config/description="Sliding Puzzles"
+run/main_scene="res://src/board/Board.tscn"
 boot_splash/image="res://icon.png"
-boot_splash/fullsize=false
 boot_splash/use_filter=false
-boot_splash/bg_color=Color( 0.2, 0.2, 0.4, 1 )
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 config/macos_native_icon="res://icon.icns"
 config/windows_native_icon="res://icon.ico"
 
 [display]
 
-window/size/width=640
-window/size/height=360
-window/size/test_width=640
-window/size/test_height=360
+window/size/width=360
+window/size/height=640
+window/size/test_width=360
+window/size/test_height=640
+window/handheld/orientation="portrait"
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 

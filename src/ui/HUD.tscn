@@ -9,38 +9,61 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="Instructions" type="RichTextLabel" parent="."]
-margin_left = 40.0
+margin_left = 200.0
 margin_top = 80.0
-margin_right = 280.0
+margin_right = 440.0
 margin_bottom = 200.0
 bbcode_enabled = true
-bbcode_text = "[pulse height=10.0 freq=10.0][center]Tap or Swipe to Change Lanes[/center][/pulse]"
-text = "Tap or Swipe to Change Lanes"
+bbcode_text = "[pulse height=10.0 freq=10.0][center]Tap to Move a Tile[/center][/pulse]"
+text = "Tap to Move a Tile"
 custom_effects = [ ExtResource( 1 ) ]
 
+[node name="Title" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+text = "HP:"
+align = 1
+valign = 1
+
+[node name="Score" type="HBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -160.0
+margin_right = -36.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Score"]
+margin_right = 80.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 80, 40 )
+text = "Moves:"
+align = 2
+valign = 1
+
+[node name="Score" type="Label" parent="Score"]
+margin_left = 84.0
+margin_right = 124.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+text = "0"
+align = 2
+valign = 1
+
 [node name="GameOver" type="Panel" parent="."]
-visible = false
 margin_left = 120.0
-margin_top = 80.0
+margin_top = 120.0
 margin_right = 520.0
-margin_bottom = 280.0
+margin_bottom = 320.0
 
 [node name="Label" type="Label" parent="GameOver"]
 margin_left = 80.0
 margin_right = 320.0
 margin_bottom = 80.0
-text = "GAME OVER"
+text = "COMPLETE!"
 align = 1
 valign = 1
 autowrap = true
-
-[node name="ScoreRecord" type="Label" parent="GameOver"]
-margin_left = 80.0
-margin_top = 40.0
-margin_right = 320.0
-margin_bottom = 120.0
-align = 1
-valign = 1
 
 [node name="Accept" type="Button" parent="GameOver"]
 margin_left = 120.0
@@ -49,85 +72,4 @@ margin_right = 280.0
 margin_bottom = 160.0
 text = "New Game"
 
-[node name="Score" type="HBoxContainer" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -120.0
-margin_bottom = 40.0
-
-[node name="Label" type="Label" parent="Score"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-text = "Score:"
-valign = 1
-
-[node name="Score" type="Label" parent="Score"]
-margin_left = 44.0
-margin_right = 84.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-text = "0"
-align = 2
-valign = 1
-
-[node name="HP" type="HBoxContainer" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -640.0
-margin_right = -520.0
-margin_bottom = 40.0
-
-[node name="Label" type="Label" parent="HP"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-text = "HP:"
-align = 1
-valign = 1
-
-[node name="HP" type="Label" parent="HP"]
-margin_left = 44.0
-margin_right = 84.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 40 )
-text = "0"
-align = 2
-valign = 1
-
-[node name="TextPanel" type="ColorRect" parent="."]
-margin_right = 640.0
-margin_bottom = 360.0
-color = Color( 1, 1, 1, 0 )
-
-[node name="Panel" type="Panel" parent="TextPanel"]
-margin_left = 280.0
-margin_top = 40.0
-margin_right = 640.0
-margin_bottom = 360.0
-
-[node name="Label" type="Label" parent="TextPanel/Panel"]
-margin_left = 40.0
-margin_top = 40.0
-margin_right = 320.0
-margin_bottom = 160.0
-text = "Choose Left or Right Action to Dismiss Phone"
-align = 1
-valign = 1
-autowrap = true
-
-[node name="Left" type="Button" parent="TextPanel/Panel"]
-margin_left = 40.0
-margin_top = 200.0
-margin_right = 160.0
-margin_bottom = 280.0
-
-[node name="Right" type="Button" parent="TextPanel/Panel"]
-margin_left = 200.0
-margin_top = 200.0
-margin_right = 320.0
-margin_bottom = 280.0
-
 [connection signal="pressed" from="GameOver/Accept" to="." method="_on_Accept_pressed"]
-[connection signal="pressed" from="TextPanel/Panel/Left" to="." method="_on_Left_pressed"]
-[connection signal="pressed" from="TextPanel/Panel/Right" to="." method="_on_Right_pressed"]

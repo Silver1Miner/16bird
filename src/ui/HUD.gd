@@ -12,12 +12,3 @@ func game_over(counter: int, max_counter: int) -> void:
 func _on_Accept_pressed():
 	$GameOver.visible = false
 	emit_signal("game_over_acknowledged")
-
-func activate_text() -> void:
-	$TextPanel.visible = true
-
-func _on_Left_pressed():
-	$TextPanel.visible = false
-
-func _on_Right_pressed():
-	$TextPanel.visible = false
