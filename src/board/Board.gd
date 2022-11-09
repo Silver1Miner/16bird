@@ -36,21 +36,22 @@ func _on_Tile_pressed(number: int) -> void:
 	if game_state == GAME_STATES.WON:
 		game_state = GAME_STATES.STARTED
 		reset_move_count()
+		scramble_board()
 		emit_signal("game_started")
 		return
 	var tile = value_to_grid(number)
 	empty = value_to_grid(0)
-	if tile.x != empty.x and tile.y != empty.y:
-		return # not adjacent to empty slot!
+	if (tile.x != empty.x and tile.y != empty.y):
+		return
 	var dir = Vector2(sign(tile.x - empty.x), sign(tile.y - empty.y))
-	var start = Vector2(min(tile.x, empty.x),min(tile.y, empty.y))
+	var start = Vector2(min(tile.x, empty.x), min(tile.y, empty.y))
 	var end = Vector2(max(tile.x, empty.x), max(tile.y, empty.y))
 	for r in range(end.y, start.y - 1, -1):
 		for c in range(end.x, start.x - 1, -1):
 			if board[r][c] == 0:
 				continue
-			var selected_tile = get_tile_by_value(board[r][c])
-			selected_tile.slide_to(Vector2(c, r)-dir * tile_size, slide_duration)
+			var object: TextureButton = get_tile_by_value(board[r][c])
+			object.slide_to((Vector2(c, r)-dir) * tile_size, slide_duration)
 			is_animating = true
 			tiles_animating += 1
 	var old_board = board.duplicate(true)
@@ -79,9 +80,10 @@ func _on_Tile_pressed(number: int) -> void:
 	var is_solved = is_board_solved()
 	if is_solved:
 		game_state = GAME_STATES.WON
+		print("game won")
 		emit_signal("game_won")
 
-func slide_row(row, dir, limiter) -> Array:
+func slide_row(row, dir, limiter):
 	var empty_index = row.find(0)
 	if dir == 1:
 		var start = row.slice(0, limiter)
@@ -89,7 +91,7 @@ func slide_row(row, dir, limiter) -> Array:
 		var pre = row.slice(limiter, empty_index)
 		pre.pop_back()
 		var post = row.slice(empty_index, row.size())
-		post.pop_back()
+		post.pop_front()
 		return start + [0] + pre + post
 	else:
 		var pre = row.slice(0, empty_index)
@@ -100,7 +102,7 @@ func slide_row(row, dir, limiter) -> Array:
 		end.pop_front()
 		return pre + post + [0] + end
 
-func slide_column(col, dir, limiter) -> Array:
+func slide_column(col, dir, limiter):
 	var empty_index = col.find(0)
 	if dir == 1:
 		var start = col.slice(0, limiter)

@@ -36,6 +36,7 @@ valign = 1
 [node name="Panel" type="Panel" parent="."]
 margin_right = 80.0
 margin_bottom = 80.0
+mouse_filter = 2
 custom_styles/panel = SubResource( 1 )
 
 [connection signal="pressed" from="." to="." method="_on_Tile_pressed"]
