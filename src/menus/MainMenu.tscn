@@ -3,6 +3,7 @@
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_min_size = Vector2( 360, 640 )
 
 [node name="Label" type="Label" parent="."]
 margin_top = 60.0
@@ -12,30 +13,44 @@ text = "FOUR BY FOUR"
 align = 1
 valign = 1
 
-[node name="Campaign" type="Button" parent="."]
-margin_left = 100.0
-margin_top = 380.0
-margin_right = 260.0
-margin_bottom = 420.0
+[node name="Menu" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -120.0
+margin_top = -320.0
+margin_right = 120.0
+custom_constants/separation = 20
+
+[node name="Campaign" type="Button" parent="Menu"]
+margin_right = 240.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 240, 60 )
 text = "CAMPAIGN"
 
-[node name="Custom" type="Button" parent="."]
-margin_left = 100.0
-margin_top = 440.0
-margin_right = 260.0
-margin_bottom = 480.0
-text = "CREATOR"
+[node name="Free" type="Button" parent="Menu"]
+margin_top = 80.0
+margin_right = 240.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 240, 60 )
+text = "FREE PLAY"
 
-[node name="Settings" type="Button" parent="."]
-margin_left = 100.0
-margin_top = 500.0
-margin_right = 260.0
-margin_bottom = 540.0
+[node name="Settings" type="Button" parent="Menu"]
+margin_top = 160.0
+margin_right = 240.0
+margin_bottom = 220.0
+rect_min_size = Vector2( 240, 60 )
 text = "SETTINGS"
 
-[node name="Free" type="Button" parent="."]
-margin_left = 100.0
+[node name="Quit" type="Button" parent="Menu"]
+margin_top = 240.0
+margin_right = 240.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 240, 60 )
+text = "QUIT"
+
+[node name="Control" type="Control" parent="Menu"]
 margin_top = 320.0
-margin_right = 260.0
-margin_bottom = 360.0
-text = "ARCADE"
+margin_right = 240.0
+margin_bottom = 320.0

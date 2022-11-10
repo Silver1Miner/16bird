@@ -1,0 +1,141 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/board/Board.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/gui/icons/return.png" type="Texture" id=2]
+[ext_resource path="res://assets/gui/icons/exitLeft.png" type="Texture" id=3]
+[ext_resource path="res://assets/gui/icons/gear.png" type="Texture" id=4]
+[ext_resource path="res://src/game/Game.gd" type="Script" id=5]
+[ext_resource path="res://assets/gui/Theme.tres" type="Theme" id=6]
+
+[node name="Game" type="Control"]
+margin_right = 360.0
+margin_bottom = 640.0
+rect_min_size = Vector2( 360, 640 )
+theme = ExtResource( 6 )
+script = ExtResource( 5 )
+
+[node name="GameView" type="VBoxContainer" parent="."]
+margin_right = 360.0
+margin_bottom = 640.0
+custom_constants/separation = 0
+
+[node name="Commands" type="ColorRect" parent="GameView"]
+margin_right = 360.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 360, 120 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Back" type="TextureButton" parent="GameView/Commands"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 80, 80 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_disabled = ExtResource( 3 )
+expand = true
+
+[node name="Restart" type="TextureButton" parent="GameView/Commands"]
+margin_left = 140.0
+margin_top = 20.0
+margin_right = 220.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 80, 80 )
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 2 )
+texture_disabled = ExtResource( 2 )
+expand = true
+
+[node name="Settings" type="TextureButton" parent="GameView/Commands"]
+margin_left = 260.0
+margin_top = 20.0
+margin_right = 340.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 80, 80 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_disabled = ExtResource( 4 )
+expand = true
+
+[node name="BoardView" type="Panel" parent="GameView"]
+margin_top = 120.0
+margin_right = 360.0
+margin_bottom = 480.0
+rect_min_size = Vector2( 360, 360 )
+
+[node name="Board" parent="GameView/BoardView" instance=ExtResource( 1 )]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 340.0
+margin_bottom = 340.0
+
+[node name="Status" type="ColorRect" parent="GameView"]
+margin_top = 480.0
+margin_right = 360.0
+margin_bottom = 640.0
+rect_min_size = Vector2( 360, 160 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Clock" type="VBoxContainer" parent="GameView/Status"]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 120.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 80, 80 )
+
+[node name="ClockText" type="Label" parent="GameView/Status/Clock"]
+margin_right = 80.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 20 )
+text = "Time"
+align = 1
+valign = 1
+
+[node name="Clock" type="Label" parent="GameView/Status/Clock"]
+margin_top = 44.0
+margin_right = 80.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 40, 20 )
+text = "00:00"
+align = 1
+valign = 1
+
+[node name="Moves" type="VBoxContainer" parent="GameView/Status"]
+margin_left = 240.0
+margin_top = 40.0
+margin_right = 320.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 80, 80 )
+
+[node name="MoveText" type="Label" parent="GameView/Status/Moves"]
+margin_right = 80.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 20 )
+text = "Moves"
+align = 1
+valign = 1
+
+[node name="MoveValue" type="Label" parent="GameView/Status/Moves"]
+margin_top = 44.0
+margin_right = 80.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 40, 20 )
+text = "0"
+align = 1
+valign = 1
+
+[node name="Complete" type="Panel" parent="."]
+margin_top = 640.0
+margin_right = 360.0
+margin_bottom = 1280.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="GameView/Commands/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="GameView/Commands/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="GameView/Commands/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="game_started" from="GameView/BoardView/Board" to="." method="_on_Board_game_started"]
+[connection signal="game_won" from="GameView/BoardView/Board" to="." method="_on_Board_game_won"]
+[connection signal="moves_updated" from="GameView/BoardView/Board" to="." method="_on_Board_moves_updated"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

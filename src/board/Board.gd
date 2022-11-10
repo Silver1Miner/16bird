@@ -18,7 +18,7 @@ var game_state = GAME_STATES.READY
 
 signal game_started()
 signal game_won()
-signal moves_updated()
+signal moves_updated(move_count)
 
 func _ready():
 	tile_size = floor(get_size().x/size)
