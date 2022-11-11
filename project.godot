@@ -30,6 +30,10 @@ config/icon="res://icon.png"
 config/macos_native_icon="res://icon.icns"
 config/windows_native_icon="res://icon.ico"
 
+[autoload]
+
+Settings="*res://src/settings/Settings.tscn"
+
 [display]
 
 window/size/width=360

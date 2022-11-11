@@ -33,4 +33,7 @@ rect_min_size = Vector2( 360, 0 )
 anims/RESET = SubResource( 2 )
 anims/ToGame = SubResource( 1 )
 
+[connection signal="quit" from="MainMenu" to="." method="_on_MainMenu_quit"]
+[connection signal="to_campaign" from="MainMenu" to="." method="_on_MainMenu_to_campaign"]
 [connection signal="to_freeplay" from="MainMenu" to="." method="_on_MainMenu_to_freeplay"]
+[connection signal="back" from="Game" to="." method="_on_Game_back"]

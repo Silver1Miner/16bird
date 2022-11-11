@@ -217,6 +217,20 @@ func reset_board() -> void:
 				set_tile_position(r, c, board[r][c])
 	empty = value_to_grid(0)
 
+func auto_win() -> void:
+	board = []
+	for r in range(size):
+		board.append(([]))
+		for c in range(size):
+			board[r].append(r*size + c + 1)
+			if r*size + c + 1 == size * size:
+				board[r][c] = 0
+			else:
+				set_tile_position(r, c, board[r][c])
+	empty = value_to_grid(0)
+	game_state = GAME_STATES.WON
+	emit_signal("game_won")
+
 func set_tile_position(r: int, c: int, val: int) -> void:
 	var object = get_tile_by_value(val)
 	object.set_position(Vector2(c, r) * tile_size)

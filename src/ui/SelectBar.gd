@@ -1,16 +1,22 @@
 extends HBoxContainer
 
+signal selected(current_select)
+var current_select = 2
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	for n in 5:
+		if get_children()[n].connect("selected", self, "_on_selected") != OK:
+			push_error("fail to connect select")
+	get_children()[2].pressed = true
 
+func _on_selected(id: int):
+	current_select = id
+	update_display()
+	emit_signal("selected", current_select)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func update_display() -> void:
+	for n in len(get_children()):
+		if n == current_select:
+			pass
+		else:
+			get_children()[n].pressed = false

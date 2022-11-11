@@ -75,10 +75,9 @@ rect_min_size = Vector2( 360, 160 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="Clock" type="VBoxContainer" parent="GameView/Status"]
-margin_left = 40.0
-margin_top = 40.0
-margin_right = 120.0
-margin_bottom = 120.0
+margin_left = 20.0
+margin_right = 100.0
+margin_bottom = 84.0
 rect_min_size = Vector2( 80, 80 )
 
 [node name="ClockText" type="Label" parent="GameView/Status/Clock"]
@@ -98,11 +97,33 @@ text = "00:00"
 align = 1
 valign = 1
 
+[node name="Solvers" type="VBoxContainer" parent="GameView/Status"]
+margin_left = 120.0
+margin_right = 240.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 80, 80 )
+
+[node name="SolveText" type="Label" parent="GameView/Status/Solvers"]
+margin_right = 120.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 120, 20 )
+text = "Solvers"
+align = 1
+valign = 1
+
+[node name="SolveValue" type="Label" parent="GameView/Status/Solvers"]
+margin_top = 44.0
+margin_right = 120.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 40, 20 )
+text = "0"
+align = 1
+valign = 1
+
 [node name="Moves" type="VBoxContainer" parent="GameView/Status"]
-margin_left = 240.0
-margin_top = 40.0
-margin_right = 320.0
-margin_bottom = 120.0
+margin_left = 260.0
+margin_right = 340.0
+margin_bottom = 84.0
 rect_min_size = Vector2( 80, 80 )
 
 [node name="MoveText" type="Label" parent="GameView/Status/Moves"]
@@ -122,6 +143,14 @@ text = "0"
 align = 1
 valign = 1
 
+[node name="InstantSolve" type="Button" parent="GameView/Status"]
+margin_left = 80.0
+margin_top = 90.0
+margin_right = 280.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 200, 60 )
+text = "Instant Solve"
+
 [node name="Complete" type="Panel" parent="."]
 margin_top = 640.0
 margin_right = 360.0
@@ -135,4 +164,5 @@ margin_bottom = 1280.0
 [connection signal="game_started" from="GameView/BoardView/Board" to="." method="_on_Board_game_started"]
 [connection signal="game_won" from="GameView/BoardView/Board" to="." method="_on_Board_game_won"]
 [connection signal="moves_updated" from="GameView/BoardView/Board" to="." method="_on_Board_moves_updated"]
+[connection signal="pressed" from="GameView/Status/InstantSolve" to="." method="_on_InstantSolve_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
