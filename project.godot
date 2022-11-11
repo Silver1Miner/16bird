@@ -22,7 +22,7 @@ _global_script_class_icons={
 
 config/name="Four by Four"
 config/description="Sliding Puzzles"
-run/main_scene="res://src/board/Board.tscn"
+run/main_scene="res://src/Main.tscn"
 boot_splash/image="res://icon.png"
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )

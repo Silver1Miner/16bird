@@ -8,9 +8,6 @@
 [ext_resource path="res://assets/gui/Theme.tres" type="Theme" id=6]
 
 [node name="Game" type="Control"]
-margin_right = 360.0
-margin_bottom = 640.0
-rect_min_size = Vector2( 360, 640 )
 theme = ExtResource( 6 )
 script = ExtResource( 5 )
 
