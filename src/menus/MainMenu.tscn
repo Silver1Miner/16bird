@@ -109,9 +109,9 @@ margin_bottom = 640.0
 rect_min_size = Vector2( 360, 640 )
 
 [node name="Campaign" type="Button" parent="Panels/Campaign"]
-margin_left = 71.0
+margin_left = 60.0
 margin_top = 460.0
-margin_right = 311.0
+margin_right = 300.0
 margin_bottom = 520.0
 rect_min_size = Vector2( 240, 60 )
 text = "NEXT LEVEL"

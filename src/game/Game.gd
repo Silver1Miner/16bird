@@ -28,6 +28,15 @@ func get_ready() -> void:
 	board.reset_board()
 	board.game_state = 0
 
+func set_game_board(custom_flat: Array) -> void:
+	board.set_custom_board(custom_flat)
+	board.game_state = 1
+	seconds = 0
+	minutes = 0
+	clock_display.text = "00:00"
+	move_display.text = "0"
+	timer.start(1)
+
 func _on_Back_pressed():
 	timer.stop()
 	seconds = 0
@@ -86,3 +95,6 @@ func _on_InstantSolve_pressed():
 		Settings.instant_solvers -= 1
 		solve_display.text = str(Settings.instant_solvers)
 	board.auto_win()
+
+func _on_Mute_toggled(button_pressed):
+	Settings.mute = button_pressed

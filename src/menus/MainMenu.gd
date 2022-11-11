@@ -3,17 +3,26 @@ extends Control
 signal to_campaign()
 signal to_freeplay()
 signal quit()
+var campaign = preload("res://data/campaign.tres")
 onready var tween = $Tween
 onready var panels = $Panels
 onready var track_time_button = $Panels/Training/TrainOptions/Time/TrackTime
 onready var track_moves_button = $Panels/Training/TrainOptions/Moves/TrackMoves
 onready var allow_solvers_button = $Panels/Training/TrainOptions/Solver/AllowSolvers
+onready var campaign_button = $Panels/Campaign/Campaign
 
 func _ready():
 	track_moves_button.pressed = Settings.training_track_moves
 	track_time_button.pressed = Settings.training_track_time
 	allow_solvers_button.pressed = Settings.training_instant_solver_allowed
 	panels.rect_position.x = 2 * -360
+	update_display()
+
+func update_display() -> void:
+	if Settings.current_level >= len(campaign.levels):
+		campaign_button.text = "TRAINING"
+	else:
+		campaign_button.text = "LEVEL " + str(Settings.current_level + 1)
 
 func _on_SelectBar_selected(current_select):
 	if tween:

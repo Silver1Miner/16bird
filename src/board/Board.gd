@@ -217,6 +217,17 @@ func reset_board() -> void:
 				set_tile_position(r, c, board[r][c])
 	empty = value_to_grid(0)
 
+func set_custom_board(flat) -> void:
+	if size * size != len(flat):
+		push_error("custom board is of invalid size")
+	if not is_board_solvable(flat):
+		push_error("custom board is not solvable")
+	for r in range(size):
+		for c in range(size):
+			board[r][c] = flat[r*size + c]
+			if board[r][c] != 0:
+				set_tile_position(r, c, board[r][c])
+
 func auto_win() -> void:
 	board = []
 	for r in range(size):
