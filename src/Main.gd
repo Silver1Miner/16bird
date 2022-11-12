@@ -17,7 +17,7 @@ func _on_MainMenu_to_campaign():
 	$MainMenu/HUD.visible = false
 	$Game.get_ready()
 	if Settings.current_level < len(campaign.levels):
-		$Game.set_game_board(campaign.levels[Settings.current_level][0])
+		$Game.set_game_data(campaign.levels[Settings.current_level])
 	$Game.visible = true
 
 func _on_MainMenu_quit():
@@ -28,3 +28,14 @@ func _on_Game_back():
 	$MainMenu.visible = true
 	$MainMenu/HUD.visible = true
 	$Game.visible = false
+
+func _on_Game_restart():
+	_on_MainMenu_to_campaign()
+
+func _on_Game_next():
+	_on_MainMenu_to_campaign()
+
+func _on_Game_replay():
+	$Game.get_ready()
+	if Settings.current_level-1 < len(campaign.levels):
+		$Game.set_game_data(campaign.levels[Settings.current_level-1])

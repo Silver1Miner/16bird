@@ -37,7 +37,7 @@ rect_min_size = Vector2( 120, 60 )
 id = 2
 
 [node name="Label" parent="ToCampaign" index="0"]
-text = "Campaign"
+text = "Home"
 
 [node name="Icon" parent="ToCampaign" index="1"]
 texture = ExtResource( 5 )
