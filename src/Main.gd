@@ -4,9 +4,9 @@ var campaign = preload("res://data/campaign.tres")
 
 func _on_MainMenu_to_freeplay():
 	print("to free play")
+	$Game.training = true
 	$MainMenu.visible = false
 	$MainMenu/HUD.visible = false
-	$Game.training = true
 	$Game.get_ready()
 	$Game.visible = true
 
@@ -16,8 +16,6 @@ func _on_MainMenu_to_campaign():
 	$MainMenu.visible = false
 	$MainMenu/HUD.visible = false
 	$Game.get_ready()
-	if Settings.current_level < len(campaign.levels):
-		$Game.set_game_data(campaign.levels[Settings.current_level])
 	$Game.visible = true
 
 func _on_MainMenu_quit():

@@ -20,7 +20,7 @@ func _ready():
 
 func update_display() -> void:
 	if Settings.current_level >= len(campaign.levels):
-		campaign_button.text = "TRAINING"
+		campaign_button.text = "RANDOM"
 	else:
 		campaign_button.text = "LEVEL " + str(Settings.current_level + 1)
 
