@@ -3,13 +3,22 @@ extends Control
 signal to_campaign()
 signal to_freeplay()
 signal quit()
+var energy = 10 setget _set_energy
+var coins = 0 setget _set_coins
+var seconds = 0
+const SECONDS_TO_NEXT = 600
 var campaign = preload("res://data/campaign.tres")
 onready var tween = $Tween
 onready var panels = $Panels
+onready var select_bar = $HUD/SelectBar
 onready var track_time_button = $Panels/Training/TrainOptions/Time/TrackTime
 onready var track_moves_button = $Panels/Training/TrainOptions/Moves/TrackMoves
 onready var allow_solvers_button = $Panels/Training/TrainOptions/Solver/AllowSolvers
 onready var campaign_button = $Panels/Campaign/Campaign
+onready var energy_display = $HUD/Panel/Energy/EnergyIcon/EnergyValue
+onready var coins_display = $HUD/Panel/Coins/CoinValue
+onready var clock_display = $HUD/Panel/Energy/ClockDisplay
+onready var clock = $Tick
 
 func _ready():
 	track_moves_button.pressed = Settings.training_track_moves
@@ -48,3 +57,28 @@ func _on_TrackTime_toggled(button_pressed):
 
 func _on_AllowSolvers_toggled(button_pressed):
 	Settings.training_instant_solver_allowed = button_pressed
+
+func _on_EnergyIcon_pressed():
+	select_bar.get_node("ToShop").pressed = true
+
+func _on_CoinIcon_pressed():
+	select_bar.get_node("ToShop").pressed = true
+
+func _set_energy(new_value: int) -> void:
+	energy = new_value
+	energy_display.text = str(energy)
+
+func _set_coins(new_value: int) -> void:
+	coins = new_value
+	coins_display.text = str(coins)
+
+func _on_Tick_timeout():
+	if seconds <= 0:
+		seconds = 0
+		if energy < 5:
+			_set_energy(energy+1)
+			if energy >= 5:
+				_set_energy(5)
+				clock.stop()
+			else:
+				seconds = SECONDS_TO_NEXT

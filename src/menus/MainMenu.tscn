@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/menus/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://src/ui/SelectBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/gui/icons/powerupGreen_bolt.png" type="Texture" id=3]
+[ext_resource path="res://assets/gui/Theme.tres" type="Theme" id=4]
+[ext_resource path="res://assets/gui/icons/powerupYellow_star.png" type="Texture" id=5]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -169,13 +172,64 @@ text = "SETTINGS"
 [node name="Panel" type="Panel" parent="HUD"]
 margin_right = 360.0
 margin_bottom = 60.0
+theme = ExtResource( 4 )
 
-[node name="Label" type="Label" parent="HUD/Panel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-text = "FOUR BY FOUR"
+[node name="Energy" type="HBoxContainer" parent="HUD/Panel"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 134.0
+margin_bottom = 50.0
+
+[node name="EnergyIcon" type="TextureButton" parent="HUD/Panel/Energy"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_disabled = ExtResource( 3 )
+expand = true
+
+[node name="EnergyValue" type="Label" parent="HUD/Panel/Energy/EnergyIcon"]
+margin_right = 20.0
+margin_bottom = 40.0
+mouse_filter = 1
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "5"
 align = 1
 valign = 1
+
+[node name="ClockDisplay" type="Label" parent="HUD/Panel/Energy"]
+margin_left = 44.0
+margin_right = 124.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 80, 40 )
+text = "00:00"
+valign = 1
+
+[node name="Coins" type="HBoxContainer" parent="HUD/Panel"]
+margin_left = 180.0
+margin_top = 10.0
+margin_right = 344.0
+margin_bottom = 50.0
+
+[node name="CoinIcon" type="TextureButton" parent="HUD/Panel/Coins"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 5 )
+texture_disabled = ExtResource( 5 )
+expand = true
+
+[node name="CoinValue" type="Label" parent="HUD/Panel/Coins"]
+margin_left = 44.0
+margin_right = 164.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 120, 40 )
+text = "999999999999"
+valign = 1
+
+[node name="Tick" type="Timer" parent="."]
 
 [connection signal="pressed" from="Panels/Training/FreePlay" to="." method="_on_FreePlay_pressed"]
 [connection signal="toggled" from="Panels/Training/TrainOptions/Time/TrackTime" to="." method="_on_TrackTime_toggled"]
@@ -184,3 +238,6 @@ valign = 1
 [connection signal="pressed" from="Panels/Campaign/Campaign" to="." method="_on_Campaign_pressed"]
 [connection signal="pressed" from="Panels/Settings/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="selected" from="HUD/SelectBar" to="." method="_on_SelectBar_selected"]
+[connection signal="pressed" from="HUD/Panel/Energy/EnergyIcon" to="." method="_on_EnergyIcon_pressed"]
+[connection signal="pressed" from="HUD/Panel/Coins/CoinIcon" to="." method="_on_CoinIcon_pressed"]
+[connection signal="timeout" from="Tick" to="." method="_on_Tick_timeout"]
