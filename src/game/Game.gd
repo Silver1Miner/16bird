@@ -53,7 +53,10 @@ func set_game_data(data: Array) -> void:
 	set_game_board(data[0])
 
 func set_game_board(custom_flat: Array) -> void:
-	board.set_custom_board(custom_flat)
+	if len(custom_flat) == 0:
+		board.scramble_board()
+	else:
+		board.set_custom_board(custom_flat)
 	board.game_state = 1
 	seconds = 0
 	minutes = 0

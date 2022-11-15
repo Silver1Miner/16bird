@@ -228,7 +228,7 @@ margin_bottom = 164.0
 rect_min_size = Vector2( 320, 80 )
 align = 1
 valign = 2
-clip_text = true
+autowrap = true
 
 [node name="Picture" type="TextureRect" parent="Complete/CompleteView"]
 margin_top = 168.0
