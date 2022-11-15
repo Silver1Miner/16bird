@@ -323,7 +323,8 @@ custom_constants/separation = 40
 alignment = 1
 
 [node name="Replay" type="TextureButton" parent="Complete/CompleteView/CompleteOptions"]
-margin_right = 80.0
+margin_left = 60.0
+margin_right = 140.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
 texture_normal = ExtResource( 2 )
@@ -332,8 +333,8 @@ texture_disabled = ExtResource( 2 )
 expand = true
 
 [node name="OK" type="TextureButton" parent="Complete/CompleteView/CompleteOptions"]
-margin_left = 120.0
-margin_right = 200.0
+margin_left = 180.0
+margin_right = 260.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
 texture_normal = ExtResource( 8 )
@@ -342,6 +343,7 @@ texture_disabled = ExtResource( 8 )
 expand = true
 
 [node name="Next" type="TextureButton" parent="Complete/CompleteView/CompleteOptions"]
+visible = false
 margin_left = 240.0
 margin_right = 320.0
 margin_bottom = 80.0
@@ -366,5 +368,4 @@ anims/Victory = SubResource( 2 )
 [connection signal="pressed" from="GameView/Status/InstantSolve" to="." method="_on_InstantSolve_pressed"]
 [connection signal="pressed" from="Complete/CompleteView/CompleteOptions/Replay" to="." method="_on_Replay_pressed"]
 [connection signal="pressed" from="Complete/CompleteView/CompleteOptions/OK" to="." method="_on_OK_pressed"]
-[connection signal="pressed" from="Complete/CompleteView/CompleteOptions/Next" to="." method="_on_Next_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

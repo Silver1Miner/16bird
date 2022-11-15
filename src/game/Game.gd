@@ -39,12 +39,15 @@ func get_ready() -> void:
 		instant_solve.visible = Settings.training_instant_solver_allowed
 		solve_display.text = str(Settings.instant_solvers)
 	else:
-		if Settings.current_level < len(campaign.levels):
-			set_game_data(campaign.levels[Settings.current_level])
+		if Settings.current_level < 10:
+			set_campaign_game(campaign.training_levels[Settings.current_level])
 		else:
-			push_error("no campaign level available")
+			if campaign.check_valid_level(Settings.current_level):
+				set_campaign_game(campaign.get_level(Settings.current_level))
+			else:
+				push_error("no campaign level available")
 
-func set_game_data(data: Array) -> void:
+func set_campaign_game(data: Array) -> void:
 	# 0 array, 1 title, 2 picture
 	title_display.text = data[1]
 	title_display_complete.text = data[1]
@@ -62,7 +65,7 @@ func set_game_board(custom_flat: Array) -> void:
 	minutes = 0
 	clock_display.text = "00:00"
 	move_display.text = "0"
-	timer.start(1)
+	_on_Board_game_started()
 
 func _on_Back_pressed():
 	timer.stop()
@@ -112,7 +115,7 @@ func _on_Board_moves_updated(move_count: int):
 func _on_Board_game_started():
 	seconds = 0
 	minutes = 0
-	timer.start()
+	timer.start(1)
 	if Settings.training_instant_solver_allowed and Settings.instant_solvers > 0:
 		instant_solve.disabled = false
 

@@ -1,6 +1,44 @@
 extends Resource
 
-var levels = [
+var dir_start = "res://assets/campaign/s"
+var current_s = 0
+var current_s_levels = []
+
+func check_valid_level(level: int) -> bool:
+	var dir = Directory.new()
+# warning-ignore:integer_division
+	var s = int(level/10)
+	current_s = s
+	return dir.dir_exists(dir_start + str(s) + "/")
+
+func get_level(level: int) -> Array:
+# warning-ignore:integer_division
+	var s = int(level/10)
+	var l = level % 10
+	if s == current_s and len(current_s_levels) == 10:
+		return current_s_levels[l]
+	current_s = s
+	current_s_levels.clear()
+	var dir = Directory.new()
+	if dir.open(dir_start + str(s) + "/") == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				push_error("should not have directory in folder")
+			else:
+				var image = Image.new()
+				image.load(dir_start + str(s) + "/" + file_name)
+				var t = ImageTexture.new()
+				t.create_from_image(image)
+				var title = file_name.split(".")[0]
+				current_s_levels.append([title, t])
+		return current_s_levels[l]
+	else:
+		push_error("error in trying to access path")
+		return []
+
+var training_levels = [
 # s1 Training
 	[ # 0
 		[1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15], # layout
@@ -52,58 +90,52 @@ var levels = [
 		"No More Mr. Nice Guy", # title
 		preload("res://assets/campaign/s1/no more nice guy.png"), # picture
 	],
+]
 
+
+
+var levels = [
+	[],[],[],[],[],[],[],[],[],[],
 # s2 Free
 	[ # 10
-		[], # layout
 		"A Bed of Roses", # title
 		preload("res://assets/campaign/s2/a bed of roses.png"), # picture
 	],
 	[ # 11
-		[], # layout
 		"A Bee in Your Bonnet", # title
 		preload("res://assets/campaign/s2/a bee in your bonnet.png"), # picture
 	],
 	[ # 12
-		[], # layout
 		"A bird in the hand is worth two in the bush", # title
 		preload("res://assets/campaign/s2/a bird in the hand is worth two in the bush.png"), # picture
 	],
 	[ # 13
-		[], # layout
 		"A blast from the past", # title
 		preload("res://assets/campaign/s2/a blast from the past.png"), # picture
 	],
 	[ # 14
-		[], # layout
 		"A day late and a dollar short", # title
 		preload("res://assets/campaign/s2/a day late and a dollar short.png"), # picture
 	],
 	[ # 15
-		[], # layout
 		"A dog's life", # title
 		preload("res://assets/campaign/s2/a dog's life.png"), # picture
 	],
 	[ # 16
-		[], # layout
 		"A drop in the bucket", # title
 		preload("res://assets/campaign/s2/a drop in the bucket.png"), # picture
 	],
 	[ # 17
-		[], # layout
 		"A face like a bulldog chewing on a wasp", # title
 		preload("res://assets/campaign/s2/a face like a bulldog chewing on a wasp.png"), # picture
 	],
 	[ # 18
-		[], # layout
 		"A face like a burst couch", # title
 		preload("res://assets/campaign/s2/a face like a burst couch.png"), # picture
 	],
 	[ # 19
-		[], # layout
 		"A face that would scare a dog out of a butcher shop", # title
 		preload("res://assets/campaign/s2/a face that would scare a dog out of a butcher shop.png"), # picture
 	],
 # s3
-
 ]
