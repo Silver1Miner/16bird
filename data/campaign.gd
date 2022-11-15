@@ -8,7 +8,6 @@ func check_valid_level(level: int) -> bool:
 	var dir = Directory.new()
 # warning-ignore:integer_division
 	var s = int(level/10)+1
-	current_s = s
 	return dir.dir_exists(dir_start + str(s))
 
 func get_level(level: int) -> Array:

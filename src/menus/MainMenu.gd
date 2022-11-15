@@ -29,8 +29,10 @@ func _ready():
 func update_display() -> void:
 	if Campaign.check_valid_level(Settings.current_level):
 		campaign_button.text = "LEVEL " + str(Settings.current_level + 1)
+		campaign_button.disabled = false
 	else:
-		campaign_button.text = "RANDOM"
+		campaign_button.disabled = true
+		campaign_button.text = "CAMPAIGN COMPLETE!"
 
 func _on_SelectBar_selected(current_select):
 	if tween:
