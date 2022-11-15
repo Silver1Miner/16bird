@@ -7,7 +7,6 @@ var energy = 10 setget _set_energy
 var coins = 0 setget _set_coins
 var seconds = 0
 const SECONDS_TO_NEXT = 600
-var campaign = preload("res://data/campaign.tres")
 onready var tween = $Tween
 onready var panels = $Panels
 onready var select_bar = $HUD/SelectBar
@@ -28,10 +27,10 @@ func _ready():
 	update_display()
 
 func update_display() -> void:
-	if Settings.current_level >= len(campaign.levels):
-		campaign_button.text = "RANDOM"
-	else:
+	if Campaign.check_valid_level(Settings.current_level):
 		campaign_button.text = "LEVEL " + str(Settings.current_level + 1)
+	else:
+		campaign_button.text = "RANDOM"
 
 func _on_SelectBar_selected(current_select):
 	if tween:

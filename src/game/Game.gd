@@ -7,7 +7,6 @@ signal next()
 var training = true
 var seconds = 0
 var minutes = 0
-var campaign = preload("res://data/campaign.tres")
 onready var board = $GameView/BoardView/Board
 onready var clock = $GameView/Status/Clock
 onready var moves = $GameView/Status/Moves
@@ -21,7 +20,7 @@ onready var timer = $Timer
 onready var title_display = $GameView/Commands/Title
 onready var title_display_complete = $Complete/CompleteView/Title
 onready var pic_complete = $Complete/CompleteView/Picture
-onready var next_button = $Complete/CompleteView/CompleteOptions/Next
+onready var replay_button = $Complete/CompleteView/CompleteOptions/Replay
 
 func _ready():
 	pass # Replace with function body.
@@ -31,7 +30,7 @@ func get_ready() -> void:
 	instant_solve.disabled = true
 	board.reset_board()
 	board.game_state = 0
-	next_button.visible = !training
+	replay_button.visible = training
 	if training:
 		clock.visible = Settings.training_track_time
 		moves.visible = Settings.training_track_moves
@@ -40,10 +39,10 @@ func get_ready() -> void:
 		solve_display.text = str(Settings.instant_solvers)
 	else:
 		if Settings.current_level < 10:
-			set_campaign_game(campaign.training_levels[Settings.current_level])
+			set_campaign_game(Campaign.training_levels[Settings.current_level])
 		else:
-			if campaign.check_valid_level(Settings.current_level):
-				set_campaign_game(campaign.get_level(Settings.current_level))
+			if Campaign.check_valid_level(Settings.current_level):
+				set_campaign_game(Campaign.get_level(Settings.current_level))
 			else:
 				push_error("no campaign level available")
 
@@ -125,8 +124,6 @@ func _on_Board_game_won():
 	_anim.play("Victory")
 	if not training:
 		Settings.current_level += 1
-		if Settings.current_level >= len(campaign.levels):
-			next_button.disabled = true
 
 func _on_InstantSolve_pressed():
 	if Settings.instant_solvers > 0:

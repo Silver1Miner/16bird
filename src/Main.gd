@@ -1,7 +1,5 @@
 extends Control
 
-var campaign = preload("res://data/campaign.tres")
-
 func _on_MainMenu_to_freeplay():
 	print("to free play")
 	$Game.training = true
@@ -35,5 +33,3 @@ func _on_Game_next():
 
 func _on_Game_replay():
 	$Game.get_ready()
-	if Settings.current_level-1 < len(campaign.levels):
-		$Game.set_game_data(campaign.levels[Settings.current_level-1])

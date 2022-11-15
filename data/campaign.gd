@@ -1,4 +1,4 @@
-extends Resource
+extends Node
 
 var dir_start = "res://assets/campaign/s"
 var current_s = 0
@@ -7,32 +7,32 @@ var current_s_levels = []
 func check_valid_level(level: int) -> bool:
 	var dir = Directory.new()
 # warning-ignore:integer_division
-	var s = int(level/10)
+	var s = int(level/10)+1
 	current_s = s
-	return dir.dir_exists(dir_start + str(s) + "/")
+	return dir.dir_exists(dir_start + str(s))
 
 func get_level(level: int) -> Array:
 # warning-ignore:integer_division
-	var s = int(level/10)
+	var s = int(level/10)+1
 	var l = level % 10
 	if s == current_s and len(current_s_levels) == 10:
 		return current_s_levels[l]
 	current_s = s
 	current_s_levels.clear()
 	var dir = Directory.new()
-	if dir.open(dir_start + str(s) + "/") == OK:
+	if dir.open(dir_start + str(s)) == OK:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
-			if dir.current_is_dir():
-				push_error("should not have directory in folder")
+			if dir.current_is_dir() or file_name == "." or file_name == "..":
+				pass
 			else:
-				var image = Image.new()
-				image.load(dir_start + str(s) + "/" + file_name)
-				var t = ImageTexture.new()
-				t.create_from_image(image)
-				var title = file_name.split(".")[0]
-				current_s_levels.append([title, t])
+				var split = file_name.split(".")
+				var title = split[0]
+				var suffix = split[-1]
+				if suffix == "import":
+					current_s_levels.append([[],title,load(dir_start+str(s)+"/"+file_name.replace(".import",""))])
+			file_name = dir.get_next()
 		return current_s_levels[l]
 	else:
 		push_error("error in trying to access path")

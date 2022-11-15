@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/board/Board.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/gui/buttons/return.png" type="Texture" id=2]
@@ -8,8 +8,6 @@
 [ext_resource path="res://assets/gui/Theme.tres" type="Theme" id=6]
 [ext_resource path="res://assets/gui/buttons/audioOn.png" type="Texture" id=7]
 [ext_resource path="res://assets/gui/buttons/home.png" type="Texture" id=8]
-[ext_resource path="res://assets/gui/buttons/arrowRight-light.png" type="Texture" id=9]
-[ext_resource path="res://assets/gui/buttons/arrowRight.png" type="Texture" id=10]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -340,17 +338,6 @@ rect_min_size = Vector2( 80, 80 )
 texture_normal = ExtResource( 8 )
 texture_pressed = ExtResource( 8 )
 texture_disabled = ExtResource( 8 )
-expand = true
-
-[node name="Next" type="TextureButton" parent="Complete/CompleteView/CompleteOptions"]
-visible = false
-margin_left = 240.0
-margin_right = 320.0
-margin_bottom = 80.0
-rect_min_size = Vector2( 80, 80 )
-texture_normal = ExtResource( 9 )
-texture_pressed = ExtResource( 10 )
-texture_disabled = ExtResource( 10 )
 expand = true
 
 [node name="Timer" type="Timer" parent="."]
