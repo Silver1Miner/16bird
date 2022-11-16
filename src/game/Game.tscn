@@ -238,16 +238,16 @@ expand = true
 [node name="Stats" type="HBoxContainer" parent="Complete/CompleteView"]
 margin_top = 492.0
 margin_right = 320.0
-margin_bottom = 556.0
+margin_bottom = 624.0
 alignment = 1
 
 [node name="Time" type="VBoxContainer" parent="Complete/CompleteView/Stats"]
-margin_left = 78.0
+margin_left = 38.0
 margin_right = 158.0
-margin_bottom = 64.0
+margin_bottom = 132.0
 
 [node name="TimeText" type="Label" parent="Complete/CompleteView/Stats/Time"]
-margin_right = 80.0
+margin_right = 120.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 80, 0 )
 text = "Time"
@@ -255,13 +255,12 @@ align = 1
 
 [node name="TimeValue" type="Label" parent="Complete/CompleteView/Stats/Time"]
 margin_top = 34.0
-margin_right = 80.0
+margin_right = 120.0
 margin_bottom = 64.0
 text = "00:00"
 align = 1
 
 [node name="BestText" type="Label" parent="Complete/CompleteView/Stats/Time"]
-visible = false
 margin_top = 68.0
 margin_right = 120.0
 margin_bottom = 98.0
@@ -270,7 +269,6 @@ text = "Best Time"
 align = 1
 
 [node name="BestValue" type="Label" parent="Complete/CompleteView/Stats/Time"]
-visible = false
 margin_top = 102.0
 margin_right = 120.0
 margin_bottom = 132.0
@@ -279,11 +277,11 @@ align = 1
 
 [node name="Move" type="VBoxContainer" parent="Complete/CompleteView/Stats"]
 margin_left = 162.0
-margin_right = 242.0
-margin_bottom = 64.0
+margin_right = 282.0
+margin_bottom = 132.0
 
 [node name="MoveText" type="Label" parent="Complete/CompleteView/Stats/Move"]
-margin_right = 80.0
+margin_right = 120.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 80, 0 )
 text = "Moves"
@@ -291,13 +289,12 @@ align = 1
 
 [node name="MoveValue" type="Label" parent="Complete/CompleteView/Stats/Move"]
 margin_top = 34.0
-margin_right = 80.0
+margin_right = 120.0
 margin_bottom = 64.0
-text = "00:00"
+text = "0"
 align = 1
 
 [node name="BestMove" type="Label" parent="Complete/CompleteView/Stats/Move"]
-visible = false
 margin_top = 68.0
 margin_right = 120.0
 margin_bottom = 98.0
@@ -306,33 +303,30 @@ text = "Best Moves"
 align = 1
 
 [node name="BestValue" type="Label" parent="Complete/CompleteView/Stats/Move"]
-visible = false
-margin_top = 68.0
-margin_right = 80.0
-margin_bottom = 98.0
-text = "00:00"
+margin_top = 102.0
+margin_right = 120.0
+margin_bottom = 132.0
+text = "0"
 align = 1
 
-[node name="CompleteOptions" type="HBoxContainer" parent="Complete/CompleteView"]
+[node name="CompleteOptions" type="HBoxContainer" parent="Complete"]
 margin_top = 560.0
-margin_right = 320.0
+margin_right = 360.0
 margin_bottom = 640.0
-custom_constants/separation = 40
+custom_constants/separation = 200
 alignment = 1
 
-[node name="Replay" type="TextureButton" parent="Complete/CompleteView/CompleteOptions"]
-margin_left = 60.0
-margin_right = 140.0
+[node name="Replay" type="TextureButton" parent="Complete/CompleteOptions"]
+margin_right = 80.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 2 )
-texture_disabled = ExtResource( 2 )
 expand = true
 
-[node name="OK" type="TextureButton" parent="Complete/CompleteView/CompleteOptions"]
-margin_left = 180.0
-margin_right = 260.0
+[node name="OK" type="TextureButton" parent="Complete/CompleteOptions"]
+margin_left = 280.0
+margin_right = 360.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
 texture_normal = ExtResource( 8 )
@@ -353,6 +347,6 @@ anims/Victory = SubResource( 2 )
 [connection signal="game_won" from="GameView/BoardView/Board" to="." method="_on_Board_game_won"]
 [connection signal="moves_updated" from="GameView/BoardView/Board" to="." method="_on_Board_moves_updated"]
 [connection signal="pressed" from="GameView/Status/InstantSolve" to="." method="_on_InstantSolve_pressed"]
-[connection signal="pressed" from="Complete/CompleteView/CompleteOptions/Replay" to="." method="_on_Replay_pressed"]
-[connection signal="pressed" from="Complete/CompleteView/CompleteOptions/OK" to="." method="_on_OK_pressed"]
+[connection signal="pressed" from="Complete/CompleteOptions/Replay" to="." method="_on_Replay_pressed"]
+[connection signal="pressed" from="Complete/CompleteOptions/OK" to="." method="_on_OK_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

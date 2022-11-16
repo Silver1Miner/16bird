@@ -203,6 +203,7 @@ func scramble_board() -> void:
 			if board[r][c] != 0:
 				set_tile_position(r, c, board[r][c])
 	empty = value_to_grid(0)
+	game_state = GAME_STATES.STARTED
 
 func reset_board() -> void:
 	reset_move_count()

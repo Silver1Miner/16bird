@@ -37,6 +37,3 @@ anims/ToGame = SubResource( 1 )
 [connection signal="to_campaign" from="MainMenu" to="." method="_on_MainMenu_to_campaign"]
 [connection signal="to_freeplay" from="MainMenu" to="." method="_on_MainMenu_to_freeplay"]
 [connection signal="back" from="Game" to="." method="_on_Game_back"]
-[connection signal="next" from="Game" to="." method="_on_Game_next"]
-[connection signal="replay" from="Game" to="." method="_on_Game_replay"]
-[connection signal="restart" from="Game" to="." method="_on_Game_restart"]

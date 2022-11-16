@@ -24,12 +24,3 @@ func _on_Game_back():
 	$MainMenu.visible = true
 	$MainMenu/HUD.visible = true
 	$Game.visible = false
-
-func _on_Game_restart():
-	_on_MainMenu_to_campaign()
-
-func _on_Game_next():
-	_on_MainMenu_to_campaign()
-
-func _on_Game_replay():
-	$Game.get_ready()
