@@ -161,9 +161,6 @@ func _on_InstantSolve_pressed():
 		solve_display.text = str(Settings.instant_solvers)
 	board.auto_win()
 
-func _on_Mute_toggled(button_pressed):
-	Settings.mute = button_pressed
-
 func _on_OK_pressed():
 	if _anim.is_playing():
 		return
