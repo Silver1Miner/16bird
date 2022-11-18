@@ -30,8 +30,10 @@ onready var display_time_best_text = $Complete/CompleteView/Stats/Time/BestText
 onready var display_time_best = $Complete/CompleteView/Stats/Time/BestValue
 onready var display_move_best_text = $Complete/CompleteView/Stats/Move/BestMove
 onready var display_move_best = $Complete/CompleteView/Stats/Move/BestValue
+onready var audio_settings = $AudioSettings
 
 func get_ready() -> void:
+	audio_settings.visible = false
 	_anim.play("RESET")
 	instant_solve.disabled = true
 	autowin_used = false
@@ -171,3 +173,6 @@ func _on_Replay_pressed():
 		return
 	_on_Restart_pressed()
 	_anim.play_backwards("Victory")
+
+func _on_Settings_pressed():
+	audio_settings.visible = !audio_settings.visible

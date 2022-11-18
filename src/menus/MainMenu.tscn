@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/menus/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://src/ui/SelectBar.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/gui/Theme.tres" type="Theme" id=4]
 [ext_resource path="res://assets/gui/icons/powerupYellow_star.png" type="Texture" id=5]
 [ext_resource path="res://src/menus/SettingsMenu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/gui/buttons/gear.png" type="Texture" id=7]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -45,6 +46,7 @@ margin_bottom = 1009.0
 [node name="Recharge" type="Label" parent="Panels/Store/ScrollContainer/Display"]
 margin_right = 320.0
 margin_bottom = 63.0
+mouse_filter = 1
 text = "
 RECHARGE"
 align = 1
@@ -54,6 +56,7 @@ margin_top = 67.0
 margin_right = 320.0
 margin_bottom = 227.0
 rect_min_size = Vector2( 320, 160 )
+mouse_filter = 1
 
 [node name="Label" type="Label" parent="Panels/Store/ScrollContainer/Display/Energy"]
 margin_left = 20.0
@@ -82,6 +85,7 @@ text = "10 Coins"
 margin_top = 231.0
 margin_right = 320.0
 margin_bottom = 294.0
+mouse_filter = 1
 text = "
 TOOLS"
 align = 1
@@ -91,25 +95,26 @@ margin_top = 298.0
 margin_right = 320.0
 margin_bottom = 618.0
 rect_min_size = Vector2( 320, 320 )
+mouse_filter = 1
 
 [node name="Solve1" type="Button" parent="Panels/Store/ScrollContainer/Display/Solver"]
-margin_left = 40.0
+margin_left = 60.0
 margin_top = 22.0
-margin_right = 280.0
+margin_right = 260.0
 margin_bottom = 82.0
 text = "1 Solver - 20 Coins"
 
 [node name="Solve2" type="Button" parent="Panels/Store/ScrollContainer/Display/Solver"]
-margin_left = 40.0
+margin_left = 60.0
 margin_top = 122.0
-margin_right = 280.0
+margin_right = 260.0
 margin_bottom = 182.0
 text = "10 Solvers - 60 Coins"
 
 [node name="Solve3" type="Button" parent="Panels/Store/ScrollContainer/Display/Solver"]
-margin_left = 40.0
+margin_left = 60.0
 margin_top = 222.0
-margin_right = 280.0
+margin_right = 260.0
 margin_bottom = 282.0
 text = "20 Solvers - 100 Coins"
 
@@ -117,6 +122,7 @@ text = "20 Solvers - 100 Coins"
 margin_top = 622.0
 margin_right = 320.0
 margin_bottom = 685.0
+mouse_filter = 1
 text = "
 COINS"
 align = 1
@@ -127,25 +133,26 @@ margin_top = 689.0
 margin_right = 320.0
 margin_bottom = 1009.0
 rect_min_size = Vector2( 320, 320 )
+mouse_filter = 1
 
 [node name="Coin1" type="Button" parent="Panels/Store/ScrollContainer/Display/CoinShop"]
-margin_left = 34.0
+margin_left = 60.0
 margin_top = 26.0
-margin_right = 280.0
+margin_right = 260.0
 margin_bottom = 86.0
 text = "80 Coins - $0.99"
 
 [node name="Coins2" type="Button" parent="Panels/Store/ScrollContainer/Display/CoinShop"]
-margin_left = 40.0
+margin_left = 60.0
 margin_top = 126.0
-margin_right = 280.0
+margin_right = 260.0
 margin_bottom = 186.0
 text = "500 Coins - $4.99"
 
 [node name="Coins3" type="Button" parent="Panels/Store/ScrollContainer/Display/CoinShop"]
-margin_left = 40.0
+margin_left = 60.0
 margin_top = 226.0
-margin_right = 280.0
+margin_right = 260.0
 margin_bottom = 286.0
 text = "1200 Coins - $9.99"
 
@@ -271,11 +278,21 @@ margin_top = 100.0
 margin_right = 340.0
 margin_bottom = 560.0
 
-[node name="Settings" parent="Panels" instance=ExtResource( 6 )]
+[node name="Painter" type="TextureRect" parent="Panels"]
+margin_left = 1440.0
+margin_right = 1800.0
+margin_bottom = 640.0
+rect_min_size = Vector2( 360, 640 )
+
+[node name="Label" type="Label" parent="Panels/Painter"]
+margin_top = 60.0
+margin_right = 360.0
+margin_bottom = 100.0
+text = "PAINTER"
+align = 1
+valign = 1
 
 [node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="SelectBar" parent="HUD" instance=ExtResource( 2 )]
 
 [node name="Panel" type="Panel" parent="HUD"]
 margin_right = 360.0
@@ -315,9 +332,9 @@ text = "00:00"
 valign = 1
 
 [node name="Coins" type="HBoxContainer" parent="HUD/Panel"]
-margin_left = 180.0
+margin_left = 120.0
 margin_top = 10.0
-margin_right = 344.0
+margin_right = 284.0
 margin_bottom = 50.0
 
 [node name="CoinIcon" type="TextureButton" parent="HUD/Panel/Coins"]
@@ -337,6 +354,23 @@ rect_min_size = Vector2( 120, 40 )
 text = "999999999999"
 valign = 1
 
+[node name="SettingsMenu" parent="HUD/Panel" instance=ExtResource( 6 )]
+visible = false
+margin_left = 0.0
+margin_right = 360.0
+
+[node name="SettingsButton" type="TextureButton" parent="HUD/Panel"]
+margin_left = 304.0
+margin_top = 10.0
+margin_right = 344.0
+margin_bottom = 50.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 7 )
+texture_disabled = ExtResource( 7 )
+expand = true
+
+[node name="SelectBar" parent="HUD" instance=ExtResource( 2 )]
+
 [node name="Tick" type="Timer" parent="."]
 
 [connection signal="pressed" from="Panels/Training/FreePlay" to="." method="_on_FreePlay_pressed"]
@@ -344,7 +378,8 @@ valign = 1
 [connection signal="toggled" from="Panels/Training/TrainOptions/Moves/TrackMoves" to="." method="_on_TrackMoves_toggled"]
 [connection signal="toggled" from="Panels/Training/TrainOptions/Solver/AllowSolvers" to="." method="_on_AllowSolvers_toggled"]
 [connection signal="pressed" from="Panels/Campaign/Campaign" to="." method="_on_Campaign_pressed"]
-[connection signal="selected" from="HUD/SelectBar" to="." method="_on_SelectBar_selected"]
 [connection signal="pressed" from="HUD/Panel/Energy/EnergyIcon" to="." method="_on_EnergyIcon_pressed"]
 [connection signal="pressed" from="HUD/Panel/Coins/CoinIcon" to="." method="_on_CoinIcon_pressed"]
+[connection signal="pressed" from="HUD/Panel/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="selected" from="HUD/SelectBar" to="." method="_on_SelectBar_selected"]
 [connection signal="timeout" from="Tick" to="." method="_on_Tick_timeout"]

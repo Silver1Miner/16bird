@@ -18,8 +18,10 @@ onready var energy_display = $HUD/Panel/Energy/EnergyIcon/EnergyValue
 onready var coins_display = $HUD/Panel/Coins/CoinValue
 onready var clock_display = $HUD/Panel/Energy/ClockDisplay
 onready var clock = $Tick
+onready var settings_menu = $HUD/Panel/SettingsMenu
 
 func _ready():
+	settings_menu.visible = false
 	track_moves_button.pressed = Settings.training_track_moves
 	track_time_button.pressed = Settings.training_track_time
 	allow_solvers_button.pressed = Settings.training_instant_solver_allowed
@@ -36,6 +38,7 @@ func update_display() -> void:
 
 func _on_SelectBar_selected(current_select):
 	if tween:
+		settings_menu.visible = false
 		tween.interpolate_property(self, "rect_position:x",
 		rect_position.x, (current_select - 2) * -360, 0.3,
 		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
@@ -60,9 +63,11 @@ func _on_AllowSolvers_toggled(button_pressed):
 	Settings.training_instant_solver_allowed = button_pressed
 
 func _on_EnergyIcon_pressed():
+	settings_menu.visible = false
 	select_bar.get_node("ToShop").pressed = true
 
 func _on_CoinIcon_pressed():
+	settings_menu.visible = false
 	select_bar.get_node("ToShop").pressed = true
 
 func _set_energy(new_value: int) -> void:
@@ -83,3 +88,6 @@ func _on_Tick_timeout():
 				clock.stop()
 			else:
 				seconds = SECONDS_TO_NEXT
+
+func _on_SettingsButton_pressed():
+	settings_menu.visible = !settings_menu.visible

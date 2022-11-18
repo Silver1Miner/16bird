@@ -77,6 +77,7 @@ func _on_Tile_pressed(number: int) -> void:
 				moves_made += 1
 	move_count += moves_made - 1
 	emit_signal("moves_updated", move_count)
+	Audio.play_slide()
 	var is_solved = is_board_solved()
 	if is_solved:
 		game_state = GAME_STATES.WON

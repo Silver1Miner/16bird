@@ -14,3 +14,6 @@ func _on_SetDelete_toggled(button_pressed: bool):
 func _on_ConfirmDelete_pressed():
 	set_delete_button.pressed = false
 	emit_signal("clear_data")
+
+func _on_Close_pressed():
+	visible = false

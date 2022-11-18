@@ -34,6 +34,7 @@ config/windows_native_icon="res://icon.ico"
 
 Settings="*res://src/settings/Settings.tscn"
 Campaign="*res://data/Campaign.tscn"
+Audio="*res://src/audio/Audio.tscn"
 
 [display]
 
