@@ -29,7 +29,7 @@ func _ready():
 	update_display()
 
 func update_display() -> void:
-	if Campaign.check_valid_level(Settings.current_level):
+	if Images.check_valid_level(Settings.current_level):
 		campaign_button.text = "LEVEL " + str(Settings.current_level + 1)
 		campaign_button.disabled = false
 	else:

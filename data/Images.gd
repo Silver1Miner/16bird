@@ -1,5 +1,44 @@
 extends Node
 
+# GALLERY IMAGES
+var gallery_dir_start = "res://assets/gallery/"
+var current_folder = 0
+var current_folder_images = [] # ten images per folder, inices 0-9
+
+func check_valid_image(index: int) -> bool:
+	var dir = Directory.new()
+# warning-ignore:integer_division
+	var i = int(index/10) # folder numbers start from 0
+	return dir.dir_exists(gallery_dir_start+str(i))
+
+func get_gallery_image(index: int) -> Array:
+# warning-ignore:integer_division
+	var folder = int(index/10) # folder numbers start from 0
+	var image_index = index % 10
+	if folder == current_folder and len(current_folder_images) == 10:
+		return current_folder_images[image_index]
+	current_folder = folder
+	current_folder_images.clear()
+	var dir = Directory.new()
+	if dir.open(gallery_dir_start + str(current_folder)) == OK:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir() or file_name == "." or file_name == "..":
+				pass
+			else:
+				var split = file_name.split(".")
+				var title = split[0]
+				var suffix = split[-1]
+				if suffix == "import":
+					current_folder_images.append([title,load(gallery_dir_start+str(current_folder)+"/"+file_name.replace(".import",""))])
+			file_name = dir.get_next()
+		return current_folder_images[image_index]
+	else:
+		push_error("error in trying to access path")
+		return []
+
+# CAMPAIGN LEVELS
 var dir_start = "res://assets/campaign/s"
 var current_s = 0
 var current_s_levels = []
@@ -7,12 +46,12 @@ var current_s_levels = []
 func check_valid_level(level: int) -> bool:
 	var dir = Directory.new()
 # warning-ignore:integer_division
-	var s = int(level/10)+1
+	var s = int(level/10)+1 # +1 because folder numbers start from 1
 	return dir.dir_exists(dir_start + str(s))
 
 func get_level(level: int) -> Array:
 # warning-ignore:integer_division
-	var s = int(level/10)+1
+	var s = int(level/10)+1 # +1 because folder numbers start from 1
 	var l = level % 10
 	if s == current_s and len(current_s_levels) == 10:
 		return current_s_levels[l]

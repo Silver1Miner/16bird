@@ -266,45 +266,45 @@ valign = 1
 margin_left = 1080.0
 margin_right = 1440.0
 
-[node name="Painter" type="Control" parent="Panels"]
+[node name="Curator" type="Control" parent="Panels"]
 margin_left = 1440.0
 margin_right = 1800.0
 margin_bottom = 640.0
 rect_min_size = Vector2( 360, 640 )
 
-[node name="Label" type="Label" parent="Panels/Painter"]
+[node name="Label" type="Label" parent="Panels/Curator"]
 margin_top = 60.0
 margin_right = 360.0
 margin_bottom = 100.0
-text = "PAINTER"
+text = "CURATOR"
 align = 1
 valign = 1
 
-[node name="Label2" type="Label" parent="Panels/Painter"]
+[node name="Label2" type="Label" parent="Panels/Curator"]
 margin_left = 60.0
 margin_top = 120.0
 margin_right = 296.0
 margin_bottom = 150.0
-text = "Roll for New Gallary Pictures!"
+text = "Collect New Gallary Pictures!"
 
-[node name="Options" type="VBoxContainer" parent="Panels/Painter"]
+[node name="Options" type="VBoxContainer" parent="Panels/Curator"]
 margin_top = 60.0
 margin_right = 360.0
 margin_bottom = 580.0
 alignment = 1
 
-[node name="Label" type="Label" parent="Panels/Painter/Options"]
+[node name="Label" type="Label" parent="Panels/Curator/Options"]
 margin_top = 83.0
 margin_right = 360.0
 margin_bottom = 113.0
 
-[node name="Panel" type="Panel" parent="Panels/Painter/Options"]
+[node name="Panel" type="Panel" parent="Panels/Curator/Options"]
 margin_top = 117.0
 margin_right = 360.0
 margin_bottom = 437.0
 rect_min_size = Vector2( 320, 320 )
 
-[node name="Button" type="Button" parent="Panels/Painter/Options/Panel"]
+[node name="Button" type="Button" parent="Panels/Curator/Options/Panel"]
 margin_left = 40.0
 margin_top = 44.0
 margin_right = 320.0
@@ -352,9 +352,9 @@ text = "00:00"
 valign = 1
 
 [node name="Coins" type="HBoxContainer" parent="HUD/Panel"]
-margin_left = 120.0
+margin_left = 10.0
 margin_top = 10.0
-margin_right = 284.0
+margin_right = 174.0
 margin_bottom = 50.0
 
 [node name="CoinIcon" type="TextureButton" parent="HUD/Panel/Coins"]

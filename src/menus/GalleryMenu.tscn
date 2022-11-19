@@ -58,6 +58,23 @@ margin_right = 360.0
 margin_bottom = 580.0
 color = Color( 0, 0, 0, 1 )
 
+[node name="Label" type="Label" parent="Preview"]
+margin_left = 60.0
+margin_right = 300.0
+margin_bottom = 80.0
+text = "Title"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="TextureRect" type="TextureRect" parent="Preview"]
+margin_left = 20.0
+margin_top = 80.0
+margin_right = 340.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 320, 320 )
+expand = true
+
 [node name="Close" type="TextureButton" parent="Preview"]
 margin_left = 300.0
 margin_top = 20.0
@@ -67,6 +84,14 @@ texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 3 )
 texture_disabled = ExtResource( 3 )
 expand = true
+
+[node name="Button" type="Button" parent="Preview"]
+margin_left = 60.0
+margin_top = 420.0
+margin_right = 300.0
+margin_bottom = 460.0
+rect_min_size = Vector2( 240, 40 )
+text = "Set as Training Background"
 
 [connection signal="item_selected" from="Options/Jukebox/Jukebox" to="." method="_on_Jukebox_item_selected"]
 [connection signal="item_selected" from="Options/Gallery" to="." method="_on_Gallery_item_selected"]

@@ -47,20 +47,26 @@ func get_ready() -> void:
 		solve.visible = Settings.training_instant_solver_allowed
 		instant_solve.visible = Settings.training_instant_solver_allowed
 		solve_display.text = str(Settings.instant_solvers)
-		board.update_background_texture(Settings.current_training_background)
-		pic_complete.texture = Settings.current_training_background
+		set_training(Images.get_gallery_image(Settings.current_training_image_index))
 	else:
 		display_time_best_text.visible = false
 		display_time_best.visible = false
 		display_move_best_text.visible = false
 		display_move_best.visible = false
 		if Settings.current_level < 10:
-			set_campaign_game(Campaign.training_levels[Settings.current_level])
+			set_campaign_game(Images.training_levels[Settings.current_level])
 		else:
-			if Campaign.check_valid_level(Settings.current_level):
-				set_campaign_game(Campaign.get_level(Settings.current_level))
+			if Images.check_valid_level(Settings.current_level):
+				set_campaign_game(Images.get_level(Settings.current_level))
 			else:
 				push_error("no campaign level available")
+
+func set_training(data: Array) -> void:
+	# 0 title, 1 picture
+	title_display.text = data[0]
+	title_display_complete.text = data[0]
+	board.update_background_texture(data[1])
+	pic_complete.texture = data[1]
 
 func set_campaign_game(data: Array) -> void:
 	# 0 array, 1 title, 2 picture

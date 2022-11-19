@@ -9,7 +9,10 @@ var mute_music = false
 var current_level = 10
 var best_time = 0
 var best_move = 0
-var current_training_background = preload("res://assets/backgrounds/bird.jpg")
+var current_training_image_index = 0
+var gallery_owned = [
+	0,
+]
 
 func check_time(minute: int, second: int) -> void:
 	var total = minute * 60 + second
