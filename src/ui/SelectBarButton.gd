@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 
 signal selected(id)
 export var id := 1

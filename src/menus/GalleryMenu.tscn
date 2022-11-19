@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/gui/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/menus/GalleryMenu.gd" type="Script" id=2]
+[ext_resource path="res://assets/gui/buttons/flatLight33.png" type="Texture" id=3]
+
+[node name="GalleryMenu" type="Control"]
+margin_right = 360.0
+margin_bottom = 640.0
+rect_min_size = Vector2( 360, 640 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Options" type="VBoxContainer" parent="."]
+margin_top = 80.0
+margin_right = 360.0
+margin_bottom = 580.0
+
+[node name="Jukebox" type="HBoxContainer" parent="Options"]
+margin_right = 360.0
+margin_bottom = 40.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Options/Jukebox"]
+margin_left = 18.0
+margin_right = 98.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 80, 40 )
+text = "JUKEBOX"
+align = 1
+valign = 1
+
+[node name="Jukebox" type="OptionButton" parent="Options/Jukebox"]
+margin_left = 102.0
+margin_right = 342.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 240, 0 )
+align = 1
+
+[node name="Label" type="Label" parent="Options"]
+margin_top = 44.0
+margin_right = 360.0
+margin_bottom = 107.0
+text = "
+GALLERY"
+align = 1
+valign = 1
+
+[node name="Gallery" type="ItemList" parent="Options"]
+margin_top = 111.0
+margin_right = 360.0
+margin_bottom = 471.0
+rect_min_size = Vector2( 0, 360 )
+
+[node name="Preview" type="ColorRect" parent="."]
+margin_top = 60.0
+margin_right = 360.0
+margin_bottom = 580.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Close" type="TextureButton" parent="Preview"]
+margin_left = 300.0
+margin_top = 20.0
+margin_right = 340.0
+margin_bottom = 60.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_disabled = ExtResource( 3 )
+expand = true
+
+[connection signal="item_selected" from="Options/Jukebox/Jukebox" to="." method="_on_Jukebox_item_selected"]
+[connection signal="item_selected" from="Options/Gallery" to="." method="_on_Gallery_item_selected"]
+[connection signal="pressed" from="Preview/Close" to="." method="_on_Close_pressed"]

@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/ui/SelectBarButton.gd" type="Script" id=1]
+[ext_resource path="res://assets/gui/theme/yellow_panel.png" type="Texture" id=2]
+[ext_resource path="res://assets/gui/theme/red_panel.png" type="Texture" id=3]
+[ext_resource path="res://assets/gui/theme/yellow_button08.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFontData" id=5]
 font_path = "res://assets/gui/font/Chicle-Regular.ttf"
@@ -12,12 +15,16 @@ font_data = SubResource( 5 )
 flags = 4
 load_path = "res://.import/shoppingCart.png-6b07a6b808f4fab3bd5ffc89dd848cf3.stex"
 
-[node name="Select" type="Button"]
+[node name="Select" type="TextureButton"]
 margin_right = 60.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 60, 60 )
 toggle_mode = true
 action_mode = 0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+texture_disabled = ExtResource( 2 )
+expand = true
 script = ExtResource( 1 )
 
 [node name="Label" type="Label" parent="."]

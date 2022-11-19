@@ -95,7 +95,6 @@ expand = true
 margin_top = 40.0
 margin_right = 360.0
 margin_bottom = 120.0
-text = "Title The quick brown fox jumps over the lazy dog"
 align = 1
 valign = 2
 autowrap = true

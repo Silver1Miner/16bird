@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/menus/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://src/ui/SelectBar.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/gui/icons/powerupYellow_star.png" type="Texture" id=5]
 [ext_resource path="res://src/menus/SettingsMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/gui/buttons/gear.png" type="Texture" id=7]
+[ext_resource path="res://src/menus/GalleryMenu.tscn" type="PackedScene" id=8]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -24,7 +25,7 @@ margin_right = 40.0
 margin_bottom = 40.0
 custom_constants/separation = 0
 
-[node name="Store" type="TextureRect" parent="Panels"]
+[node name="Store" type="Control" parent="Panels"]
 margin_right = 360.0
 margin_bottom = 640.0
 rect_min_size = Vector2( 360, 640 )
@@ -41,9 +42,10 @@ margin_bottom = 580.0
 
 [node name="Display" type="VBoxContainer" parent="Panels/Store/ScrollContainer"]
 margin_right = 320.0
-margin_bottom = 1009.0
+margin_bottom = 387.0
 
 [node name="Recharge" type="Label" parent="Panels/Store/ScrollContainer/Display"]
+visible = false
 margin_right = 320.0
 margin_bottom = 63.0
 mouse_filter = 1
@@ -52,6 +54,7 @@ RECHARGE"
 align = 1
 
 [node name="Energy" type="Panel" parent="Panels/Store/ScrollContainer/Display"]
+visible = false
 margin_top = 67.0
 margin_right = 320.0
 margin_bottom = 227.0
@@ -82,26 +85,25 @@ margin_bottom = 142.0
 text = "10 Coins"
 
 [node name="Tools" type="Label" parent="Panels/Store/ScrollContainer/Display"]
-margin_top = 231.0
 margin_right = 320.0
-margin_bottom = 294.0
+margin_bottom = 63.0
 mouse_filter = 1
 text = "
 TOOLS"
 align = 1
 
 [node name="Solver" type="Panel" parent="Panels/Store/ScrollContainer/Display"]
-margin_top = 298.0
+margin_top = 67.0
 margin_right = 320.0
-margin_bottom = 618.0
+margin_bottom = 387.0
 rect_min_size = Vector2( 320, 320 )
 mouse_filter = 1
 
 [node name="Solve1" type="Button" parent="Panels/Store/ScrollContainer/Display/Solver"]
 margin_left = 60.0
-margin_top = 22.0
+margin_top = 33.0
 margin_right = 260.0
-margin_bottom = 82.0
+margin_bottom = 93.0
 text = "1 Solver - 20 Coins"
 
 [node name="Solve2" type="Button" parent="Panels/Store/ScrollContainer/Display/Solver"]
@@ -113,15 +115,16 @@ text = "10 Solvers - 60 Coins"
 
 [node name="Solve3" type="Button" parent="Panels/Store/ScrollContainer/Display/Solver"]
 margin_left = 60.0
-margin_top = 222.0
+margin_top = 213.0
 margin_right = 260.0
-margin_bottom = 282.0
+margin_bottom = 273.0
 text = "20 Solvers - 100 Coins"
 
 [node name="Coins" type="Label" parent="Panels/Store/ScrollContainer/Display"]
-margin_top = 622.0
+visible = false
+margin_top = 391.0
 margin_right = 320.0
-margin_bottom = 685.0
+margin_bottom = 454.0
 mouse_filter = 1
 text = "
 COINS"
@@ -129,9 +132,10 @@ align = 1
 valign = 2
 
 [node name="CoinShop" type="Panel" parent="Panels/Store/ScrollContainer/Display"]
-margin_top = 689.0
+visible = false
+margin_top = 391.0
 margin_right = 320.0
-margin_bottom = 1009.0
+margin_bottom = 711.0
 rect_min_size = Vector2( 320, 320 )
 mouse_filter = 1
 
@@ -161,7 +165,7 @@ margin_top = 580.0
 margin_right = 360.0
 margin_bottom = 640.0
 
-[node name="Training" type="TextureRect" parent="Panels"]
+[node name="Training" type="Control" parent="Panels"]
 margin_left = 360.0
 margin_right = 720.0
 margin_bottom = 640.0
@@ -194,13 +198,13 @@ margin_right = 259.0
 margin_bottom = 40.0
 
 [node name="TrackTime" type="CheckButton" parent="Panels/Training/TrainOptions/Time"]
-margin_right = 76.0
-margin_bottom = 40.0
+margin_right = 74.6721
+margin_bottom = 40.8161
 
 [node name="Label" type="Label" parent="Panels/Training/TrainOptions/Time"]
-margin_left = 80.0
+margin_left = 78.0
 margin_top = 5.0
-margin_right = 160.0
+margin_right = 158.0
 margin_bottom = 35.0
 text = "Track Time"
 
@@ -210,13 +214,13 @@ margin_right = 259.0
 margin_bottom = 84.0
 
 [node name="TrackMoves" type="CheckButton" parent="Panels/Training/TrainOptions/Moves"]
-margin_right = 76.0
-margin_bottom = 40.0
+margin_right = 74.6721
+margin_bottom = 40.8161
 
 [node name="Label" type="Label" parent="Panels/Training/TrainOptions/Moves"]
-margin_left = 80.0
+margin_left = 78.0
 margin_top = 5.0
-margin_right = 177.0
+margin_right = 175.0
 margin_bottom = 35.0
 text = "Track Moves"
 
@@ -226,17 +230,17 @@ margin_right = 259.0
 margin_bottom = 128.0
 
 [node name="AllowSolvers" type="CheckButton" parent="Panels/Training/TrainOptions/Solver"]
-margin_right = 76.0
-margin_bottom = 40.0
+margin_right = 74.6721
+margin_bottom = 40.8161
 
 [node name="Label" type="Label" parent="Panels/Training/TrainOptions/Solver"]
-margin_left = 80.0
+margin_left = 78.0
 margin_top = 5.0
-margin_right = 251.0
+margin_right = 249.0
 margin_bottom = 35.0
 text = "Allow Instant Solvers"
 
-[node name="Campaign" type="TextureRect" parent="Panels"]
+[node name="Campaign" type="Control" parent="Panels"]
 margin_left = 720.0
 margin_right = 1080.0
 margin_bottom = 640.0
@@ -258,27 +262,11 @@ text = "CAMPAIGN"
 align = 1
 valign = 1
 
-[node name="Gallery" type="TextureRect" parent="Panels"]
+[node name="GalleryMenu" parent="Panels" instance=ExtResource( 8 )]
 margin_left = 1080.0
 margin_right = 1440.0
-margin_bottom = 640.0
-rect_min_size = Vector2( 360, 640 )
 
-[node name="Label" type="Label" parent="Panels/Gallery"]
-margin_top = 60.0
-margin_right = 360.0
-margin_bottom = 100.0
-text = "GALLERY"
-align = 1
-valign = 1
-
-[node name="ScrollContainer" type="ItemList" parent="Panels/Gallery"]
-margin_left = 20.0
-margin_top = 100.0
-margin_right = 340.0
-margin_bottom = 560.0
-
-[node name="Painter" type="TextureRect" parent="Panels"]
+[node name="Painter" type="Control" parent="Panels"]
 margin_left = 1440.0
 margin_right = 1800.0
 margin_bottom = 640.0
@@ -292,6 +280,37 @@ text = "PAINTER"
 align = 1
 valign = 1
 
+[node name="Label2" type="Label" parent="Panels/Painter"]
+margin_left = 60.0
+margin_top = 120.0
+margin_right = 296.0
+margin_bottom = 150.0
+text = "Roll for New Gallary Pictures!"
+
+[node name="Options" type="VBoxContainer" parent="Panels/Painter"]
+margin_top = 60.0
+margin_right = 360.0
+margin_bottom = 580.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Panels/Painter/Options"]
+margin_top = 83.0
+margin_right = 360.0
+margin_bottom = 113.0
+
+[node name="Panel" type="Panel" parent="Panels/Painter/Options"]
+margin_top = 117.0
+margin_right = 360.0
+margin_bottom = 437.0
+rect_min_size = Vector2( 320, 320 )
+
+[node name="Button" type="Button" parent="Panels/Painter/Options/Panel"]
+margin_left = 40.0
+margin_top = 44.0
+margin_right = 320.0
+margin_bottom = 110.0
+text = "Roll - 20 Coins"
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="HUD"]
@@ -300,6 +319,7 @@ margin_bottom = 60.0
 theme = ExtResource( 4 )
 
 [node name="Energy" type="HBoxContainer" parent="HUD/Panel"]
+visible = false
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 134.0

@@ -1,5 +1,17 @@
 extends AudioStreamPlayer
 
+# MUSIC
+var tracks = [
+	["The Missed Phone Call", preload("res://assets/audio/music/9pm-the-missed-phone-call-114853.mp3")],
+	["A Cozy Day", preload("res://assets/audio/music/a-cozy-day-114852.mp3")],
+	["Chosen", preload("res://assets/audio/music/chosen-124434.mp3")],
+	["Dreamy", preload("res://assets/audio/music/dreamy-114855.mp3")]
+]
+
+func play_music(id: int) -> void:
+	stream = tracks[id][1]
+	play()
+
 # SOUND
 var available = []
 var queue = []
