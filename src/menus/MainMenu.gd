@@ -36,6 +36,13 @@ func update_display() -> void:
 		campaign_button.disabled = true
 		campaign_button.text = "CAMPAIGN COMPLETE!"
 
+func handle_coin_gain(coin_gain: int) -> void:
+	if coin_gain == 0:
+		return
+	else:
+		_set_coins(coins + coin_gain)
+		print("coin gain: ", coin_gain)
+
 func _on_SelectBar_selected(current_select):
 	if tween:
 		settings_menu.visible = false

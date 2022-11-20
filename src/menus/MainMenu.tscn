@@ -55,9 +55,8 @@ align = 1
 
 [node name="Energy" type="Panel" parent="Panels/Store/ScrollContainer/Display"]
 visible = false
-margin_top = 67.0
 margin_right = 320.0
-margin_bottom = 227.0
+margin_bottom = 160.0
 rect_min_size = Vector2( 320, 160 )
 mouse_filter = 1
 
@@ -104,21 +103,21 @@ margin_left = 60.0
 margin_top = 33.0
 margin_right = 260.0
 margin_bottom = 93.0
-text = "1 Solver - 20 Coins"
+text = "1 Solver - 30 Coins"
 
 [node name="Solve2" type="Button" parent="Panels/Store/ScrollContainer/Display/Solver"]
 margin_left = 60.0
 margin_top = 122.0
 margin_right = 260.0
 margin_bottom = 182.0
-text = "10 Solvers - 60 Coins"
+text = "10 Solvers - 280 Coins"
 
 [node name="Solve3" type="Button" parent="Panels/Store/ScrollContainer/Display/Solver"]
 margin_left = 60.0
 margin_top = 213.0
 margin_right = 260.0
 margin_bottom = 273.0
-text = "20 Solvers - 100 Coins"
+text = "20 Solvers - 500 Coins"
 
 [node name="Coins" type="Label" parent="Panels/Store/ScrollContainer/Display"]
 visible = false
@@ -294,22 +293,29 @@ margin_bottom = 580.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Panels/Curator/Options"]
-margin_top = 83.0
+margin_top = 103.0
 margin_right = 360.0
-margin_bottom = 113.0
+margin_bottom = 133.0
 
 [node name="Panel" type="Panel" parent="Panels/Curator/Options"]
-margin_top = 117.0
+margin_top = 137.0
 margin_right = 360.0
-margin_bottom = 437.0
-rect_min_size = Vector2( 320, 320 )
+margin_bottom = 417.0
+rect_min_size = Vector2( 320, 280 )
 
-[node name="Button" type="Button" parent="Panels/Curator/Options/Panel"]
+[node name="Coins" type="Button" parent="Panels/Curator/Options/Panel"]
 margin_left = 40.0
-margin_top = 44.0
+margin_top = 43.0
 margin_right = 320.0
-margin_bottom = 110.0
+margin_bottom = 109.0
 text = "Roll - 20 Coins"
+
+[node name="Trade" type="Button" parent="Panels/Curator/Options/Panel"]
+margin_left = 40.0
+margin_top = 163.0
+margin_right = 320.0
+margin_bottom = 218.0
+text = "Roll - Trade Ins"
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -371,7 +377,7 @@ margin_left = 44.0
 margin_right = 164.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 120, 40 )
-text = "999999999999"
+text = "0"
 valign = 1
 
 [node name="SettingsMenu" parent="HUD/Panel" instance=ExtResource( 6 )]

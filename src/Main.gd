@@ -19,8 +19,9 @@ func _on_MainMenu_to_campaign():
 func _on_MainMenu_quit():
 	get_tree().quit()
 
-func _on_Game_back():
+func _on_Game_back(coin_gain: int):
 	$MainMenu.update_display()
 	$MainMenu.visible = true
 	$MainMenu/HUD.visible = true
 	$Game.visible = false
+	$MainMenu.handle_coin_gain(coin_gain)

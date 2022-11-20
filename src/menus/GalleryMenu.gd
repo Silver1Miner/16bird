@@ -33,8 +33,12 @@ func _on_Gallery_item_selected(index: int) -> void:
 func set_preview(data: Array) -> void:
 	$Preview/Label.text = data[0]
 	$Preview/TextureRect.texture = data[1]
-	$Preview/Button.disabled = (preview_indices[current_selection] == Settings.current_training_image_index)
+	$Preview/SelectBackground.disabled = (preview_indices[current_selection] == Settings.current_training_image_index)
 
 func _on_Close_pressed():
 	preview.visible = false
 	gallery.release_focus()
+
+func _on_SelectBackground_pressed():
+	Settings.current_training_image_index = preview_indices[current_selection]
+	$Preview/SelectBackground.disabled = true

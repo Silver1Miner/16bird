@@ -53,6 +53,7 @@ margin_bottom = 471.0
 rect_min_size = Vector2( 0, 360 )
 
 [node name="Preview" type="ColorRect" parent="."]
+visible = false
 margin_top = 60.0
 margin_right = 360.0
 margin_bottom = 580.0
@@ -85,7 +86,7 @@ texture_pressed = ExtResource( 3 )
 texture_disabled = ExtResource( 3 )
 expand = true
 
-[node name="Button" type="Button" parent="Preview"]
+[node name="SelectBackground" type="Button" parent="Preview"]
 margin_left = 60.0
 margin_top = 420.0
 margin_right = 300.0
@@ -96,3 +97,4 @@ text = "Set as Training Background"
 [connection signal="item_selected" from="Options/Jukebox/Jukebox" to="." method="_on_Jukebox_item_selected"]
 [connection signal="item_selected" from="Options/Gallery" to="." method="_on_Gallery_item_selected"]
 [connection signal="pressed" from="Preview/Close" to="." method="_on_Close_pressed"]
+[connection signal="pressed" from="Preview/SelectBackground" to="." method="_on_SelectBackground_pressed"]

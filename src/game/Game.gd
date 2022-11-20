@@ -1,12 +1,15 @@
 extends Control
 
-signal back()
+signal back(result)
 signal restart()
 var training = true
 var autowin_used = false
 var seconds = 0
 var minutes = 0
 var moves = 0
+export var par_moves = 100
+export var par_time = 180
+var coin_gain = 0
 onready var restart_button = $GameView/Commands/Restart
 onready var board = $GameView/BoardView/Board
 onready var clock_view = $GameView/Status/Clock
@@ -30,6 +33,8 @@ onready var display_time_best_text = $Complete/CompleteView/Stats/Time/BestText
 onready var display_time_best = $Complete/CompleteView/Stats/Time/BestValue
 onready var display_move_best_text = $Complete/CompleteView/Stats/Move/BestMove
 onready var display_move_best = $Complete/CompleteView/Stats/Move/BestValue
+onready var coin_display = $Complete/CompleteView/Stats/Coins
+onready var display_coin_gain = $Complete/CompleteView/Stats/Coins/CoinValue
 onready var audio_settings = $AudioSettings
 
 func get_ready() -> void:
@@ -93,10 +98,12 @@ func _on_Back_pressed():
 	timer.stop()
 	seconds = 0
 	minutes = 0
+	moves = 0
+	autowin_used = false
 	clock_display.text = "00:00"
 	move_display.text = "0"
 	instant_solve.disabled = true
-	emit_signal("back")
+	emit_signal("back", 0)
 
 func _on_Restart_pressed():
 	if training:
@@ -104,6 +111,7 @@ func _on_Restart_pressed():
 		seconds = 0
 		minutes = 0
 		moves = 0
+		autowin_used = false
 		clock_display.text = "00:00"
 		move_display.text = "0"
 		board.scramble_board()
@@ -138,6 +146,7 @@ func _on_Board_game_started():
 	seconds = 0
 	minutes = 0
 	moves = 0
+	coin_gain = 0
 	autowin_used = false
 	timer.start(1)
 	if Settings.training_instant_solver_allowed and Settings.instant_solvers > 0:
@@ -146,13 +155,13 @@ func _on_Board_game_started():
 func _on_Board_game_won():
 	timer.stop()
 	result_display_time.text = clock_display.text
-	if training and Settings.training_track_time:
+	if training and Settings.training_track_time and not autowin_used:
 		Settings.check_time(minutes, seconds)
 		result_display_time_best.text = Settings.get_best_time()
 		display_time_best_text.visible = !autowin_used
 		display_time_best.visible = display_time_best_text.visible
 	result_display_move.text = str(moves)
-	if training and Settings.training_track_moves:
+	if training and Settings.training_track_moves and not autowin_used:
 		Settings.check_move(moves)
 		result_display_move_best.text = Settings.get_best_move()
 		display_move_best_text.visible = !autowin_used
@@ -161,6 +170,17 @@ func _on_Board_game_won():
 	_anim.play("Victory")
 	if not training:
 		Settings.current_level += 1
+		#if not autowin_used:
+		var time_xp = int(clamp((par_time - (minutes * 60 + seconds))/10, 1, 18))
+		var move_xp = int(clamp((par_moves - moves)/10, 1, 18))
+		coin_gain = time_xp + move_xp
+		display_coin_gain.text = str(coin_gain)
+		coin_display.visible = true
+		#else:
+		#	coin_gain = 0
+		#	coin_display.visible = false
+	else:
+		coin_display.visible = false
 
 func _on_InstantSolve_pressed():
 	autowin_used = true
@@ -172,7 +192,7 @@ func _on_InstantSolve_pressed():
 func _on_OK_pressed():
 	if _anim.is_playing():
 		return
-	emit_signal("back")
+	emit_signal("back", coin_gain)
 
 func _on_Replay_pressed():
 	if _anim.is_playing():
