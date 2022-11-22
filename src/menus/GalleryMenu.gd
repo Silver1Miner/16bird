@@ -21,9 +21,12 @@ func _on_Jukebox_item_selected(index: int) -> void:
 
 func update_gallery() -> void:
 	gallery.clear()
+	var j = 0
 	for i in Settings.gallery_owned:
 		preview_indices.append(i)
 		gallery.add_item(Images.get_gallery_image(i)[0]) # 0 title 1 image
+		gallery.set_item_tooltip_enabled(j, false)
+		j += 1
 
 func _on_Gallery_item_selected(index: int) -> void:
 	current_selection = index
