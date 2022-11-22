@@ -10,8 +10,9 @@ var mute_music = false
 var current_level = 10
 var best_time = 0
 var best_move = 0
+var current_training_image_folder = 0
 var current_training_image_index = 0
-var gallery_owned = [
+var bird_owned = [
 	0,1,4,9,
 ]
 

@@ -69,7 +69,7 @@ func get_level(level: int) -> Array:
 				var title = split[0]
 				var suffix = split[-1]
 				if suffix == "import":
-					current_s_levels.append([[],title,load(dir_start+str(s)+"/"+file_name.replace(".import",""))])
+					current_s_levels.append([title,load(dir_start+str(s)+"/"+file_name.replace(".import","")),[],])
 			file_name = dir.get_next()
 		return current_s_levels[l]
 	else:
@@ -79,53 +79,53 @@ func get_level(level: int) -> Array:
 var training_levels = [
 # s1 Training
 	[ # 0
-		[1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15], # layout
 		"A journey of a thousand miles begins with the first step", # title
 		preload("res://assets/campaign/s1/a journey of a thousand miles begins with the first step.png"), # picture
+		[1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15], # layout
 	],
 	[ # 1
-		[1,2,3,4,5,6,7,8,9,10,11,12,0,13,14,15], # layout
 		"A good beginning makes a good ending", # title
 		preload("res://assets/campaign/s1/a good beginning makes a good ending.png"), # picture
+		[1,2,3,4,5,6,7,8,9,10,11,12,0,13,14,15], # layout
 	],
 	[ # 2
-		[1,2,3,0,5,6,7,4,9,10,11,8,13,14,15,12], # layout
 		"The tide's beginning to turn", # title
 		preload("res://assets/campaign/s1/The tide's beginning to turn.png"), # picture
+		[1,2,3,0,5,6,7,4,9,10,11,8,13,14,15,12], # layout
 	],
 	[ # 3
-		[0,2,3,4,1,6,7,8,5,10,11,12,9,13,14,15], # layout
 		"Put Two and Two Together", # title
 		preload("res://assets/campaign/s1/two and two together.png"), # picture
+		[0,2,3,4,1,6,7,8,5,10,11,12,9,13,14,15], # layout
 	],
 	[ # 4
-		[1,2,3,4,5,6,7,8,9,11,14,12,13,10,15,0], # layout
 		"Hedge your bets", # title
 		preload("res://assets/campaign/s1/Hedge your bets.png"), # picture
+		[1,2,3,4,5,6,7,8,9,11,14,12,13,10,15,0], # layout
 	],
 	[ # 5
-		[1,2,3,4,5,6,7,8,11,10,12,15,9,14,13,0], # layout
 		"Scraping the bottom of the barrel", # title
 		preload("res://assets/campaign/s1/Scraping the bottom of the barrel.png"), # picture
+		[1,2,3,4,5,6,7,8,11,10,12,15,9,14,13,0], # layout
 	],
 	[ # 6
-		[1,2,3,4,12,9,11,10,8,14,13,15,5,7,6,0], # layout
 		"His elevator doesn't go to the top floor", # title
 		preload("res://assets/campaign/s1/His elevator doesn't go to the top floor.png"), # picture
+		[1,2,3,4,12,9,11,10,8,14,13,15,5,7,6,0], # layout
 	],
 	[ # 7
-		[1,15,12,3,5,2,14,7,9,6,11,10,13,8,4,0], # layout
 		"Know which side your bread is buttered on", # title
 		preload("res://assets/campaign/s1/Know which side your bread is buttered on.png"), # picture
+		[1,15,12,3,5,2,14,7,9,6,11,10,13,8,4,0], # layout
 	],
 	[ # 8
-		[2,1,7,9,5,6,10,11,4,8,3,12,13,14,15,0], # layout
 		"The grass is always greener on the other side", # title
 		preload("res://assets/campaign/s1/the grass is always greener on the other side.png"), # picture
+		[2,1,7,9,5,6,10,11,4,8,3,12,13,14,15,0], # layout
 	],
 	[ # 9
-		[], # layout
 		"No More Mr. Nice Guy", # title
 		preload("res://assets/campaign/s1/no more nice guy.png"), # picture
+		[], # layout
 	],
 ]

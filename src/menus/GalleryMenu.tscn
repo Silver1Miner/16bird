@@ -46,11 +46,31 @@ GALLERY"
 align = 1
 valign = 1
 
-[node name="Gallery" type="ItemList" parent="Options"]
+[node name="GalleryFolders" type="TabContainer" parent="Options"]
 margin_top = 111.0
 margin_right = 360.0
-margin_bottom = 471.0
-rect_min_size = Vector2( 0, 360 )
+margin_bottom = 463.0
+
+[node name="Cliches" type="ItemList" parent="Options/GalleryFolders"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 48.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 0, 300 )
+fixed_column_width = 340
+icon_mode = 0
+
+[node name="Birds" type="ItemList" parent="Options/GalleryFolders"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 48.0
+margin_right = -4.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 0, 300 )
 
 [node name="Preview" type="ColorRect" parent="."]
 visible = false
@@ -95,6 +115,8 @@ rect_min_size = Vector2( 240, 40 )
 text = "Set as Training Background"
 
 [connection signal="item_selected" from="Options/Jukebox/Jukebox" to="." method="_on_Jukebox_item_selected"]
-[connection signal="item_selected" from="Options/Gallery" to="." method="_on_Gallery_item_selected"]
+[connection signal="tab_changed" from="Options/GalleryFolders" to="." method="_on_GalleryFolders_tab_changed"]
+[connection signal="item_selected" from="Options/GalleryFolders/Cliches" to="." method="_on_Cliche_item_selected"]
+[connection signal="item_selected" from="Options/GalleryFolders/Birds" to="." method="_on_Birds_item_selected"]
 [connection signal="pressed" from="Preview/Close" to="." method="_on_Close_pressed"]
 [connection signal="pressed" from="Preview/SelectBackground" to="." method="_on_SelectBackground_pressed"]

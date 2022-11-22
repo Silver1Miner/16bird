@@ -52,7 +52,10 @@ func get_ready() -> void:
 		moves_view.visible = Settings.training_track_moves
 		solve.visible = Settings.training_instant_solver_allowed
 		instant_solve.visible = Settings.training_instant_solver_allowed
-		set_training(Images.get_gallery_image(Settings.current_training_image_index))
+		if Settings.current_training_image_folder == 0:
+			set_training(Images.get_level(Settings.current_training_image_index))
+		else:
+			set_training(Images.get_gallery_image(Settings.current_training_image_index))
 	else:
 		display_time_best_text.visible = false
 		display_time_best.visible = false
@@ -74,12 +77,12 @@ func set_training(data: Array) -> void:
 	pic_complete.texture = data[1]
 
 func set_campaign_game(data: Array) -> void:
-	# 0 array, 1 title, 2 picture
-	title_display.text = data[1]
-	title_display_complete.text = data[1]
-	board.update_background_texture(data[2])
-	pic_complete.texture = data[2]
-	set_game_board(data[0])
+	# 0 title, 1 picture, 2 array
+	title_display.text = data[0]
+	title_display_complete.text = data[0]
+	board.update_background_texture(data[1])
+	pic_complete.texture = data[1]
+	set_game_board(data[2])
 
 func set_game_board(custom_flat: Array) -> void:
 	if len(custom_flat) == 0:

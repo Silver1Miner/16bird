@@ -56,6 +56,7 @@ func _on_SelectBar_selected(current_select):
 		rect_position.x, (current_select - 2) * -360, 0.3,
 		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
 		tween.start()
+	$Panels/GalleryMenu.update_all()
 
 func _on_Campaign_pressed():
 	emit_signal("to_campaign")
