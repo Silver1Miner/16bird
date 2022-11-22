@@ -46,12 +46,12 @@ func get_ready() -> void:
 	board.game_state = 0
 	replay_button.visible = training
 	restart_button.visible = training
+	solve_display.text = str(Settings.instant_solvers)
 	if training:
 		clock_view.visible = Settings.training_track_time
 		moves_view.visible = Settings.training_track_moves
 		solve.visible = Settings.training_instant_solver_allowed
 		instant_solve.visible = Settings.training_instant_solver_allowed
-		solve_display.text = str(Settings.instant_solvers)
 		set_training(Images.get_gallery_image(Settings.current_training_image_index))
 	else:
 		display_time_best_text.visible = false

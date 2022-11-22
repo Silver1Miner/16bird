@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/gui/Theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/effects/FCT.gd" type="Script" id=2]
+
+[node name="FCT" type="Label"]
+margin_right = 200.0
+margin_bottom = 60.0
+theme = ExtResource( 1 )
+text = "insufficient funds!"
+align = 1
+valign = 1
+uppercase = true
+script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

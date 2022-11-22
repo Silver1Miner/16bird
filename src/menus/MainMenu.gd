@@ -5,6 +5,7 @@ signal to_freeplay()
 signal quit()
 var energy = 10 setget _set_energy
 var coins = 0 setget _set_coins
+var solvers = 0 setget _set_solvers
 var seconds = 0
 const SECONDS_TO_NEXT = 600
 onready var tween = $Tween
@@ -16,6 +17,7 @@ onready var allow_solvers_button = $Panels/Training/TrainOptions/Solver/AllowSol
 onready var campaign_button = $Panels/Campaign/Campaign
 onready var energy_display = $HUD/Panel/Energy/EnergyIcon/EnergyValue
 onready var coins_display = $HUD/Panel/Coins/CoinValue
+onready var solvers_display = $HUD/Panel/Solvers/SolversValue
 onready var clock_display = $HUD/Panel/Energy/ClockDisplay
 onready var clock = $Tick
 onready var settings_menu = $HUD/Panel/SettingsMenu
@@ -25,10 +27,14 @@ func _ready():
 	track_moves_button.pressed = Settings.training_track_moves
 	track_time_button.pressed = Settings.training_track_time
 	allow_solvers_button.pressed = Settings.training_instant_solver_allowed
+	_set_solvers(Settings.instant_solvers)
+	_set_coins(Settings.coins)
 	panels.rect_position.x = 2 * -360
 	update_display()
 
 func update_display() -> void:
+	_set_solvers(Settings.instant_solvers)
+	_set_coins(Settings.coins)
 	if Images.check_valid_level(Settings.current_level):
 		campaign_button.text = "LEVEL " + str(Settings.current_level + 1)
 		campaign_button.disabled = false
@@ -82,8 +88,14 @@ func _set_energy(new_value: int) -> void:
 	energy_display.text = str(energy)
 
 func _set_coins(new_value: int) -> void:
-	coins = new_value
+	coins = int(clamp(new_value, 0, 99999999))
 	coins_display.text = str(coins)
+	Settings.coins = coins
+
+func _set_solvers(new_value: int) -> void:
+	solvers = int(clamp(new_value, 0, 99999999))
+	solvers_display.text = str(solvers)
+	Settings.instant_solvers = solvers
 
 func _on_Tick_timeout():
 	if seconds <= 0:
@@ -98,3 +110,11 @@ func _on_Tick_timeout():
 
 func _on_SettingsButton_pressed():
 	settings_menu.visible = !settings_menu.visible
+
+func _on_StoreMenu_attempt_purchase_solver(cost: int, count: int):
+	if cost > coins:
+		print("not enough coins!")
+		return
+	_set_coins(coins - cost)
+	_set_solvers(solvers + count)
+	
