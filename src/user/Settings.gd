@@ -14,9 +14,10 @@ var best_move = 0
 var jukebox_index = 1
 var current_training_image_folder = 0
 var current_training_image_index = 0
-var bird_owned = [
+var inventory = [
 	0,1,4,9,
 ]
+var max_pictures = 10
 
 
 func check_time(minute: int, second: int) -> void:
@@ -49,3 +50,6 @@ func get_best_move() -> String:
 	if best_move == 0:
 		return "-"
 	return str(best_move)
+
+func save_data() -> void:
+	print("attempting save")

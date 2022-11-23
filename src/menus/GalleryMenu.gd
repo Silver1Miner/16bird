@@ -5,7 +5,7 @@ onready var gallery_folders = $Options/GalleryFolders
 onready var gallery_cliche = $Options/GalleryFolders/Cliches
 onready var gallery_bird = $Options/GalleryFolders/Birds
 onready var preview = $Preview
-var bird_preview_indices = []
+var preview_indices = []
 var current_folder = 0
 var current_selection = 0
 
@@ -36,11 +36,14 @@ func update_galleries() -> void:
 		gallery_cliche.set_item_tooltip_enabled(i, false)
 	gallery_bird.clear()
 	var j = 0
-	for i in Settings.bird_owned:
-		bird_preview_indices.append(i)
-		gallery_bird.add_item(Images.get_gallery_image(i)[0]) # 0 title 1 image
-		gallery_bird.set_item_tooltip_enabled(j, false)
-		j += 1
+	for i in Settings.inventory:
+		preview_indices.append(i)
+		if i >= 0 and i < 10:
+			gallery_bird.add_item(Images.get_gallery_image(i)[0]) # 0 title 1 image
+			gallery_bird.set_item_tooltip_enabled(j, false)
+			j += 1
+		elif i < 20:
+			preview_indices.append(i)
 
 func _on_Cliche_item_selected(index: int) -> void:
 	current_folder = 0
@@ -52,7 +55,7 @@ func _on_Cliche_item_selected(index: int) -> void:
 func _on_Birds_item_selected(index: int) -> void:
 	current_folder = 1
 	current_selection = index
-	set_preview(Images.get_gallery_image(bird_preview_indices[current_selection]))
+	set_preview(Images.get_gallery_image(preview_indices[current_selection]))
 	preview.visible = true
 	$Preview/SelectBackground.disabled = false
 
@@ -68,7 +71,7 @@ func _on_Close_pressed():
 func _on_SelectBackground_pressed():
 	Settings.current_training_image_folder = current_folder
 	if current_folder == 1:
-		Settings.current_training_image_index = bird_preview_indices[current_selection]
+		Settings.current_training_image_index = preview_indices[current_selection]
 	else:
 		Settings.current_training_image_index = current_selection
 	$Preview/SelectBackground.disabled = true
