@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/menus/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://src/ui/SelectBar.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/gui/buttons/gear.png" type="Texture" id=7]
 [ext_resource path="res://src/menus/GalleryMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/menus/StoreMenu.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/menus/CuratorMenu.tscn" type="PackedScene" id=10]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -129,57 +130,7 @@ valign = 1
 margin_left = 1080.0
 margin_right = 1440.0
 
-[node name="Curator" type="Control" parent="Panels"]
-margin_left = 1440.0
-margin_right = 1800.0
-margin_bottom = 640.0
-rect_min_size = Vector2( 360, 640 )
-
-[node name="Label" type="Label" parent="Panels/Curator"]
-margin_top = 60.0
-margin_right = 360.0
-margin_bottom = 100.0
-text = "CURATOR"
-align = 1
-valign = 1
-
-[node name="Label2" type="Label" parent="Panels/Curator"]
-margin_left = 60.0
-margin_top = 120.0
-margin_right = 296.0
-margin_bottom = 150.0
-text = "Collect New Gallary Pictures!"
-
-[node name="Options" type="VBoxContainer" parent="Panels/Curator"]
-margin_top = 60.0
-margin_right = 360.0
-margin_bottom = 580.0
-alignment = 1
-
-[node name="Label" type="Label" parent="Panels/Curator/Options"]
-margin_top = 103.0
-margin_right = 360.0
-margin_bottom = 133.0
-
-[node name="Panel" type="Panel" parent="Panels/Curator/Options"]
-margin_top = 137.0
-margin_right = 360.0
-margin_bottom = 417.0
-rect_min_size = Vector2( 320, 280 )
-
-[node name="Coins" type="Button" parent="Panels/Curator/Options/Panel"]
-margin_left = 40.0
-margin_top = 43.0
-margin_right = 320.0
-margin_bottom = 109.0
-text = "Roll - 20 Coins"
-
-[node name="Trade" type="Button" parent="Panels/Curator/Options/Panel"]
-margin_left = 40.0
-margin_top = 163.0
-margin_right = 320.0
-margin_bottom = 218.0
-text = "Roll - Trade Ins"
+[node name="CuratorMenu" parent="Panels" instance=ExtResource( 10 )]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -292,6 +243,7 @@ expand = true
 [connection signal="toggled" from="Panels/Training/TrainOptions/Moves/TrackMoves" to="." method="_on_TrackMoves_toggled"]
 [connection signal="toggled" from="Panels/Training/TrainOptions/Solver/AllowSolvers" to="." method="_on_AllowSolvers_toggled"]
 [connection signal="pressed" from="Panels/Campaign/Campaign" to="." method="_on_Campaign_pressed"]
+[connection signal="coins_spent" from="Panels/CuratorMenu" to="." method="_on_CuratorMenu_coins_spent"]
 [connection signal="pressed" from="HUD/Panel/Solvers/Solvericon" to="." method="_on_CoinIcon_pressed"]
 [connection signal="pressed" from="HUD/Panel/Coins/CoinIcon" to="." method="_on_CoinIcon_pressed"]
 [connection signal="pressed" from="HUD/Panel/Energy/EnergyIcon" to="." method="_on_EnergyIcon_pressed"]

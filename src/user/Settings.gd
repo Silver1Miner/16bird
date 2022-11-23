@@ -5,6 +5,7 @@ var training_track_moves = true
 var training_instant_solver_allowed = true
 var instant_solvers = 30
 var coins = 100
+var tokens = 10
 var mute_sound = false
 var mute_music = false
 var current_level = 10

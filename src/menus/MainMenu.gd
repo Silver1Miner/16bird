@@ -57,6 +57,7 @@ func _on_SelectBar_selected(current_select):
 		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
 		tween.start()
 	$Panels/GalleryMenu.update_all()
+	$Panels/CuratorMenu.update_all()
 
 func _on_Campaign_pressed():
 	emit_signal("to_campaign")
@@ -119,3 +120,8 @@ func _on_StoreMenu_attempt_purchase_solver(cost: int, count: int):
 	_set_coins(coins - cost)
 	_set_solvers(solvers + count)
 	
+func _on_CuratorMenu_coins_spent(cost: int):
+	if cost > coins:
+		print("not enough coins!")
+		return
+	_set_coins(coins - cost)
