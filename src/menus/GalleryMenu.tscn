@@ -60,7 +60,6 @@ margin_right = -4.0
 margin_bottom = -4.0
 rect_min_size = Vector2( 0, 300 )
 fixed_column_width = 340
-icon_mode = 0
 
 [node name="Birds" type="ItemList" parent="Options/GalleryFolders"]
 visible = false

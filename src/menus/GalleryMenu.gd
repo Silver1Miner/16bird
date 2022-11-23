@@ -21,6 +21,7 @@ func update_jukebox_menu() -> void:
 	jukebox.clear()
 	for track in Audio.tracks:
 		jukebox.add_item(track[0])
+	jukebox.selected = Settings.jukebox_index
 
 func _on_Jukebox_item_selected(index: int) -> void:
 	Audio.play_music(index)
@@ -28,7 +29,10 @@ func _on_Jukebox_item_selected(index: int) -> void:
 func update_galleries() -> void:
 	gallery_cliche.clear()
 	for i in Settings.current_level:
-		gallery_cliche.add_item(Images.get_level(i+1)[0])
+		var title_string = Images.get_level(i+1)[0]
+		if len(title_string) > 36:
+			title_string = title_string.left(36) + "..."
+		gallery_cliche.add_item(title_string)
 		gallery_cliche.set_item_tooltip_enabled(i, false)
 	gallery_bird.clear()
 	var j = 0
