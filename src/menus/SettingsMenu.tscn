@@ -18,14 +18,6 @@ margin_top = 60.0
 margin_right = 360.0
 margin_bottom = 580.0
 
-[node name="Quit" type="Button" parent="."]
-margin_left = 60.0
-margin_top = 480.0
-margin_right = 300.0
-margin_bottom = 540.0
-rect_min_size = Vector2( 240, 60 )
-text = "QUIT"
-
 [node name="AudioSettings" parent="." instance=ExtResource( 3 )]
 
 [node name="Delete" type="VBoxContainer" parent="."]
@@ -36,20 +28,21 @@ margin_bottom = 465.0
 
 [node name="SetDelete" type="CheckBox" parent="Delete"]
 margin_right = 240.0
-margin_bottom = 38.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 0, 60 )
 text = "Delete All Data?"
 
 [node name="ConfirmDelete" type="Button" parent="Delete"]
-margin_top = 42.0
+margin_top = 64.0
 margin_right = 240.0
-margin_bottom = 78.0
-rect_min_size = Vector2( 240, 0 )
+margin_bottom = 124.0
+rect_min_size = Vector2( 240, 60 )
 text = "Confirm Deletion"
 
 [node name="Label" type="Label" parent="Delete"]
-margin_top = 82.0
+margin_top = 128.0
 margin_right = 240.0
-margin_bottom = 112.0
+margin_bottom = 158.0
 rect_min_size = Vector2( 240, 0 )
 text = "THIS cannot be undone!"
 align = 1
