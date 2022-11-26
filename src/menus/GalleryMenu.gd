@@ -4,6 +4,7 @@ onready var jukebox = $Options/Jukebox/Jukebox
 onready var gallery_folders = $Options/GalleryFolders
 onready var gallery_cliche = $Options/GalleryFolders/Cliches
 onready var gallery_bird = $Options/GalleryFolders/Birds
+onready var gallery_anime = $Options/GalleryFolders/Anime
 onready var preview = $Preview
 var preview_indices = []
 var current_folder = 0
@@ -29,21 +30,23 @@ func _on_Jukebox_item_selected(index: int) -> void:
 func update_galleries() -> void:
 	gallery_cliche.clear()
 	for i in Settings.current_level:
-		var title_string = Images.get_level(i+1)[0]
+		var title_string = Images.get_level(i)[0]
 		if len(title_string) > 36:
 			title_string = title_string.left(36) + "..."
 		gallery_cliche.add_item(title_string)
 		gallery_cliche.set_item_tooltip_enabled(i, false)
 	gallery_bird.clear()
+	gallery_anime.clear()
 	var j = 0
 	for i in Settings.inventory:
 		preview_indices.append(i)
 		if i >= 0 and i < 10:
 			gallery_bird.add_item(Images.get_gallery_image(i)[0]) # 0 title 1 image
 			gallery_bird.set_item_tooltip_enabled(j, false)
-			j += 1
-		elif i < 20:
-			preview_indices.append(i)
+		else:
+			gallery_anime.add_item(Images.get_gallery_image(i)[0])
+			gallery_anime.set_item_tooltip_enabled(j, false)
+		j += 1
 
 func _on_Cliche_item_selected(index: int) -> void:
 	current_folder = 0
@@ -54,6 +57,13 @@ func _on_Cliche_item_selected(index: int) -> void:
 
 func _on_Birds_item_selected(index: int) -> void:
 	current_folder = 1
+	current_selection = index
+	set_preview(Images.get_gallery_image(preview_indices[current_selection]))
+	preview.visible = true
+	$Preview/SelectBackground.disabled = false
+
+func _on_Anime_item_selected(index):
+	current_folder = 2
 	current_selection = index
 	set_preview(Images.get_gallery_image(preview_indices[current_selection]))
 	preview.visible = true

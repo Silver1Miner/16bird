@@ -89,7 +89,6 @@ align = 2
 valign = 1
 
 [node name="Result" type="Panel" parent="."]
-visible = false
 margin_top = 60.0
 margin_right = 360.0
 margin_bottom = 540.0
@@ -107,6 +106,7 @@ margin_top = 60.0
 margin_right = 340.0
 margin_bottom = 380.0
 rect_min_size = Vector2( 320, 320 )
+expand = true
 
 [node name="Duplicate" type="Label" parent="Result"]
 margin_top = 395.0

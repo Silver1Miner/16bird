@@ -38,9 +38,11 @@ func update_display() -> void:
 	if Images.check_valid_level(Settings.current_level):
 		campaign_button.text = "LEVEL " + str(Settings.current_level + 1)
 		campaign_button.disabled = false
+		$Panels/Campaign/CampaignStatus.visible = false
 	else:
-		campaign_button.disabled = true
-		campaign_button.text = "CAMPAIGN COMPLETE!"
+		campaign_button.disabled = false
+		$Panels/Campaign/CampaignStatus.visible = true
+		campaign_button.text = "RANDOM!"
 
 func handle_coin_gain(coin_gain: int) -> void:
 	if coin_gain == 0:
@@ -52,6 +54,7 @@ func handle_coin_gain(coin_gain: int) -> void:
 func _on_SelectBar_selected(current_select):
 	if tween:
 		settings_menu.visible = false
+		settings_menu.credits_page.visible = false
 		tween.interpolate_property(self, "rect_position:x",
 		rect_position.x, (current_select - 2) * -360, 0.3,
 		Tween.TRANS_QUART, Tween.EASE_IN_OUT)

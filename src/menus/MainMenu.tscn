@@ -126,6 +126,15 @@ text = "CAMPAIGN"
 align = 1
 valign = 1
 
+[node name="CampaignStatus" type="Label" parent="Panels/Campaign"]
+margin_top = 384.0
+margin_right = 360.0
+margin_bottom = 455.0
+text = "Campaign Cleared!
+(Until the Next Update)"
+align = 1
+valign = 1
+
 [node name="GalleryMenu" parent="Panels" instance=ExtResource( 8 )]
 margin_left = 1080.0
 margin_right = 1440.0

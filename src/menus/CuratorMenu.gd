@@ -6,6 +6,9 @@ export var FCT: PackedScene = preload("res://src/effects/FCT.tscn")
 onready var coin_button = $Options/Panel/Coins
 onready var trade_button = $Options/Panel/Trade
 onready var result = $Result
+onready var result_name = $Result/Title
+onready var result_picture = $Result/TextureRect
+onready var duplicate_label = $Result/Duplicate
 var duplicate = false
 
 signal coins_spent(cost)
@@ -43,10 +46,22 @@ func _on_Trade_pressed():
 	roll()
 
 func roll() -> void:
+	randomize()
+	var choice = int(rand_range(0, Settings.max_pictures-1))
+	if choice in Settings.inventory:
+		duplicate = true
+	else:
+		Settings.inventory.append(choice)
+		Settings.inventory.sort()
+	var data = Images.get_gallery_image(choice)
+	result_name.text = data[0]
+	result_picture.texture = data[1]
+	duplicate_label.visible = duplicate
 	result.visible = true
-	duplicate = true
 
 func _on_Accept_pressed():
+	result_name.text = ""
+	result_picture.texture = null
 	result.visible = false
 	if duplicate:
 		_set_tokens(tokens + 1)

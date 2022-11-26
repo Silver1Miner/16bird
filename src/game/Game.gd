@@ -63,11 +63,18 @@ func get_ready() -> void:
 		display_move_best.visible = false
 		if Settings.current_level < 10:
 			set_campaign_game(Images.training_levels[Settings.current_level])
-		else:
+		elif Settings.current_level < Settings.max_level:
 			if Images.check_valid_level(Settings.current_level):
 				set_campaign_game(Images.get_level(Settings.current_level))
 			else:
 				push_error("no campaign level available")
+		else:
+			randomize()
+			var choice = int(rand_range(10, Settings.max_level-1))
+			if Images.check_valid_level(choice):
+				set_campaign_game(Images.get_level(choice))
+			else:
+				push_error("invalid campaign level selected")
 
 func set_training(data: Array) -> void:
 	# 0 title, 1 picture
@@ -172,7 +179,8 @@ func _on_Board_game_won():
 	print("game win detected")
 	_anim.play("Victory")
 	if not training:
-		Settings.current_level += 1
+		if Settings.current_level <= Settings.max_level:
+			Settings.current_level += 1
 		#if not autowin_used:
 		var time_xp = int(clamp((par_time - (minutes * 60 + seconds))/10, 1, 18))
 		var move_xp = int(clamp((par_moves - moves)/10, 1, 18))

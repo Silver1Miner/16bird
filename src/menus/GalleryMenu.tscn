@@ -49,15 +49,12 @@ valign = 1
 [node name="GalleryFolders" type="TabContainer" parent="Options"]
 margin_top = 111.0
 margin_right = 360.0
-margin_bottom = 463.0
+margin_bottom = 451.0
 
 [node name="Cliches" type="ItemList" parent="Options/GalleryFolders"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 48.0
-margin_right = -4.0
-margin_bottom = -4.0
+margin_top = 40.0
 rect_min_size = Vector2( 0, 300 )
 fixed_column_width = 340
 
@@ -69,6 +66,12 @@ margin_left = 4.0
 margin_top = 48.0
 margin_right = -4.0
 margin_bottom = -4.0
+rect_min_size = Vector2( 0, 300 )
+
+[node name="Anime" type="ItemList" parent="Options/GalleryFolders"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 0, 300 )
 
 [node name="Preview" type="ColorRect" parent="."]
@@ -117,5 +120,6 @@ text = "Set as Training Background"
 [connection signal="tab_changed" from="Options/GalleryFolders" to="." method="_on_GalleryFolders_tab_changed"]
 [connection signal="item_selected" from="Options/GalleryFolders/Cliches" to="." method="_on_Cliche_item_selected"]
 [connection signal="item_selected" from="Options/GalleryFolders/Birds" to="." method="_on_Birds_item_selected"]
+[connection signal="item_selected" from="Options/GalleryFolders/Anime" to="." method="_on_Anime_item_selected"]
 [connection signal="pressed" from="Preview/Close" to="." method="_on_Close_pressed"]
 [connection signal="pressed" from="Preview/SelectBackground" to="." method="_on_SelectBackground_pressed"]

@@ -3,7 +3,7 @@ extends Node
 # GALLERY IMAGES
 var gallery_dir_start = "res://assets/gallery/"
 var current_folder = 0
-var current_folder_images = [] # ten images per folder, inices 0-9
+var current_folder_images = [] # ten images per folder, indices 0-9
 
 func check_valid_image(index: int) -> bool:
 	var dir = Directory.new()
@@ -90,7 +90,7 @@ var training_levels = [
 	],
 	[ # 2
 		"The tide's beginning to turn", # title
-		preload("res://assets/campaign/s1/The tide's beginning to turn.png"), # picture
+		preload("res://assets/campaign/s1/the tide's beginning to turn.png"), # picture
 		[1,2,3,0,5,6,7,4,9,10,11,8,13,14,15,12], # layout
 	],
 	[ # 3
@@ -100,22 +100,22 @@ var training_levels = [
 	],
 	[ # 4
 		"Hedge your bets", # title
-		preload("res://assets/campaign/s1/Hedge your bets.png"), # picture
+		preload("res://assets/campaign/s1/hedge your bets.png"), # picture
 		[1,2,3,4,5,6,7,8,9,11,14,12,13,10,15,0], # layout
 	],
 	[ # 5
 		"Scraping the bottom of the barrel", # title
-		preload("res://assets/campaign/s1/Scraping the bottom of the barrel.png"), # picture
+		preload("res://assets/campaign/s1/scraping the bottom of the barrel.png"), # picture
 		[1,2,3,4,5,6,7,8,11,10,12,15,9,14,13,0], # layout
 	],
 	[ # 6
 		"His elevator doesn't go to the top floor", # title
-		preload("res://assets/campaign/s1/His elevator doesn't go to the top floor.png"), # picture
+		preload("res://assets/campaign/s1/his elevator doesn't go to the top floor.png"), # picture
 		[1,2,3,4,12,9,11,10,8,14,13,15,5,7,6,0], # layout
 	],
 	[ # 7
 		"Know which side your bread is buttered on", # title
-		preload("res://assets/campaign/s1/Know which side your bread is buttered on.png"), # picture
+		preload("res://assets/campaign/s1/know which side your bread is buttered on.png"), # picture
 		[1,15,12,3,5,2,14,7,9,6,11,10,13,8,4,0], # layout
 	],
 	[ # 8
