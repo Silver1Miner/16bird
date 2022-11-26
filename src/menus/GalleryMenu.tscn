@@ -68,12 +68,6 @@ margin_right = -4.0
 margin_bottom = -4.0
 rect_min_size = Vector2( 0, 300 )
 
-[node name="Anime" type="ItemList" parent="Options/GalleryFolders"]
-visible = false
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 0, 300 )
-
 [node name="Preview" type="ColorRect" parent="."]
 visible = false
 margin_top = 60.0
@@ -120,6 +114,5 @@ text = "Set as Training Background"
 [connection signal="tab_changed" from="Options/GalleryFolders" to="." method="_on_GalleryFolders_tab_changed"]
 [connection signal="item_selected" from="Options/GalleryFolders/Cliches" to="." method="_on_Cliche_item_selected"]
 [connection signal="item_selected" from="Options/GalleryFolders/Birds" to="." method="_on_Birds_item_selected"]
-[connection signal="item_selected" from="Options/GalleryFolders/Anime" to="." method="_on_Anime_item_selected"]
 [connection signal="pressed" from="Preview/Close" to="." method="_on_Close_pressed"]
 [connection signal="pressed" from="Preview/SelectBackground" to="." method="_on_SelectBackground_pressed"]

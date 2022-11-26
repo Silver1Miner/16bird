@@ -16,10 +16,9 @@ var jukebox_index = 1
 var current_training_image_folder = 0
 var current_training_image_index = 0
 var inventory = [
-	0,1,4,9,
+	0,1,9,4
 ]
 var max_pictures = 10
-
 
 func check_time(minute: int, second: int) -> void:
 	var total = minute * 60 + second
