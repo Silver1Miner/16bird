@@ -18,6 +18,7 @@ func _on_ConfirmDelete_pressed():
 	emit_signal("clear_data")
 
 func _on_Close_pressed():
+	UserData.save_settings()
 	visible = false
 
 func _on_ViewCredits_pressed():

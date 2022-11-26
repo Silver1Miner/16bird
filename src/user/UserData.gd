@@ -20,9 +20,6 @@ var inventory = [ # progress
 ]
 var max_pictures = 10 # GAME PARAMETER
 
-func _ready() -> void:
-	load_data()
-
 func check_time(minute: int, second: int) -> void:
 	var total = minute * 60 + second
 	if total < best_time or best_time == 0:

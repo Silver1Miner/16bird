@@ -16,7 +16,6 @@ func _on_SoundToggle2_toggled(button_pressed: bool):
 	sound_toggle.pressed = button_pressed
 	AudioServer.set_bus_mute(1, !button_pressed)
 	UserData.mute_sound = !button_pressed
-	UserData.save_settings()
 
 func _on_MusicToggle_toggled(button_pressed: bool):
 	music_toggle_2.pressed = button_pressed
@@ -25,4 +24,3 @@ func _on_MusicToggle2_toggled(button_pressed: bool):
 	music_toggle.pressed = button_pressed
 	AudioServer.set_bus_mute(2, !button_pressed)
 	UserData.mute_music = !button_pressed
-	UserData.save_settings()

@@ -27,7 +27,6 @@ func update_jukebox_menu() -> void:
 func _on_Jukebox_item_selected(index: int) -> void:
 	Audio.play_music(index)
 	UserData.jukebox_index = index
-	UserData.save_settings()
 
 func update_galleries() -> void:
 	gallery_cliche.clear()

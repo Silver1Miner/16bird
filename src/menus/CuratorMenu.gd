@@ -30,7 +30,6 @@ func _set_tokens(new_value: int) -> void:
 	tokens = int(clamp(new_value, 0, 999999))
 	UserData.tokens = tokens
 	token_display.text = str(tokens)
-	UserData.save_data()
 
 func _on_Coins_pressed():
 	if 20 > UserData.coins:
