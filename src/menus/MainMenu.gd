@@ -24,6 +24,7 @@ onready var settings_menu = $HUD/Panel/SettingsMenu
 
 func _ready():
 	UserData.load_settings()
+	UserData.load_data()
 	settings_menu.visible = false
 	track_moves_button.pressed = UserData.training_track_moves
 	track_time_button.pressed = UserData.training_track_time
@@ -100,11 +101,13 @@ func _set_coins(new_value: int) -> void:
 	coins = int(clamp(new_value, 0, 99999999))
 	coins_display.text = str(coins)
 	UserData.coins = coins
+	UserData.save_data()
 
 func _set_solvers(new_value: int) -> void:
 	solvers = int(clamp(new_value, 0, 99999999))
 	solvers_display.text = str(solvers)
 	UserData.instant_solvers = solvers
+	UserData.save_data()
 
 func _on_Tick_timeout():
 	if seconds <= 0:
@@ -132,3 +135,8 @@ func _on_CuratorMenu_coins_spent(cost: int):
 		print("not enough coins!")
 		return
 	_set_coins(coins - cost)
+
+
+func _on_SettingsMenu_clear_data():
+	UserData.clear_data()
+	update_display()

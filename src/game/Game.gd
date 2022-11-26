@@ -159,7 +159,9 @@ func _on_Board_game_started():
 	coin_gain = 0
 	autowin_used = false
 	timer.start(1)
-	if UserData.training_instant_solver_allowed and UserData.instant_solvers > 0:
+	if training and UserData.training_instant_solver_allowed and UserData.instant_solvers > 0:
+		instant_solve.disabled = false
+	if not training and UserData.instant_solvers > 0:
 		instant_solve.disabled = false
 
 func _on_Board_game_won():
@@ -180,7 +182,7 @@ func _on_Board_game_won():
 	_anim.play("Victory")
 	if not training:
 		if UserData.current_level <= UserData.max_level:
-			UserData.current_level += 1
+			UserData.current_level = int(clamp(UserData.current_level+1, 0, UserData.max_level))
 		#if not autowin_used:
 		var time_xp = int(clamp((par_time - (minutes * 60 + seconds))/10, 1, 18))
 		var move_xp = int(clamp((par_moves - moves)/10, 1, 18))

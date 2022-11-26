@@ -272,5 +272,6 @@ valign = 2
 [connection signal="pressed" from="HUD/Panel/Solvers/Solvericon" to="." method="_on_CoinIcon_pressed"]
 [connection signal="pressed" from="HUD/Panel/Coins/CoinIcon" to="." method="_on_CoinIcon_pressed"]
 [connection signal="pressed" from="HUD/Panel/Energy/EnergyIcon" to="." method="_on_EnergyIcon_pressed"]
+[connection signal="clear_data" from="HUD/Panel/SettingsMenu" to="." method="_on_SettingsMenu_clear_data"]
 [connection signal="pressed" from="HUD/Panel/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="selected" from="HUD/SelectBar" to="." method="_on_SelectBar_selected"]
