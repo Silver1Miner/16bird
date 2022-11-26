@@ -32,7 +32,7 @@ config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
-Settings="*res://src/user/Settings.tscn"
+UserData="*res://src/user/UserData.tscn"
 Audio="*res://src/audio/Audio.tscn"
 Images="*res://data/Images.tscn"
 

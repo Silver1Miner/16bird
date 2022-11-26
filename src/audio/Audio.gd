@@ -16,6 +16,10 @@ func play_music(id: int) -> void:
 var available = []
 var queue = []
 func _ready():
+	UserData.load_settings()
+	AudioServer.set_bus_mute(1, UserData.mute_sound)
+	AudioServer.set_bus_mute(2, UserData.mute_music)
+	play_music(UserData.jukebox_index)
 	for i in 4:
 		var p = AudioStreamPlayer.new()
 		add_child(p)

@@ -22,14 +22,16 @@ func update_jukebox_menu() -> void:
 	jukebox.clear()
 	for track in Audio.tracks:
 		jukebox.add_item(track[0])
-	jukebox.selected = Settings.jukebox_index
+	jukebox.selected = UserData.jukebox_index
 
 func _on_Jukebox_item_selected(index: int) -> void:
 	Audio.play_music(index)
+	UserData.jukebox_index = index
+	UserData.save_settings()
 
 func update_galleries() -> void:
 	gallery_cliche.clear()
-	for i in Settings.current_level:
+	for i in UserData.current_level:
 		var title_string = Images.get_level(i)[0]
 		if len(title_string) > 36:
 			title_string = title_string.left(36) + "..."
@@ -39,7 +41,7 @@ func update_galleries() -> void:
 	#gallery_anime.clear()
 	var j = 0
 	preview_indices.clear()
-	for i in Settings.inventory:
+	for i in UserData.inventory:
 		preview_indices.append(i)
 		var title_string = Images.get_gallery_image(i)[0]
 		if len(title_string) > 36:
@@ -79,11 +81,11 @@ func _on_Close_pressed():
 	gallery_bird.release_focus()
 
 func _on_SelectBackground_pressed():
-	Settings.current_training_image_folder = current_folder
+	UserData.current_training_image_folder = current_folder
 	if current_folder == 1:
-		Settings.current_training_image_index = preview_indices[current_selection]
+		UserData.current_training_image_index = preview_indices[current_selection]
 	else:
-		Settings.current_training_image_index = current_selection
+		UserData.current_training_image_index = current_selection
 	$Preview/SelectBackground.disabled = true
 
 func _on_GalleryFolders_tab_changed(tab: int):

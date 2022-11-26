@@ -46,31 +46,31 @@ func get_ready() -> void:
 	board.game_state = 0
 	replay_button.visible = training
 	restart_button.visible = training
-	solve_display.text = str(Settings.instant_solvers)
+	solve_display.text = str(UserData.instant_solvers)
 	if training:
-		clock_view.visible = Settings.training_track_time
-		moves_view.visible = Settings.training_track_moves
-		solve.visible = Settings.training_instant_solver_allowed
-		instant_solve.visible = Settings.training_instant_solver_allowed
-		if Settings.current_training_image_folder == 0:
-			set_training(Images.get_level(Settings.current_training_image_index))
+		clock_view.visible = UserData.training_track_time
+		moves_view.visible = UserData.training_track_moves
+		solve.visible = UserData.training_instant_solver_allowed
+		instant_solve.visible = UserData.training_instant_solver_allowed
+		if UserData.current_training_image_folder == 0:
+			set_training(Images.get_level(UserData.current_training_image_index))
 		else:
-			set_training(Images.get_gallery_image(Settings.current_training_image_index))
+			set_training(Images.get_gallery_image(UserData.current_training_image_index))
 	else:
 		display_time_best_text.visible = false
 		display_time_best.visible = false
 		display_move_best_text.visible = false
 		display_move_best.visible = false
-		if Settings.current_level < 10:
-			set_campaign_game(Images.training_levels[Settings.current_level])
-		elif Settings.current_level < Settings.max_level:
-			if Images.check_valid_level(Settings.current_level):
-				set_campaign_game(Images.get_level(Settings.current_level))
+		if UserData.current_level < 10:
+			set_campaign_game(Images.training_levels[UserData.current_level])
+		elif UserData.current_level < UserData.max_level:
+			if Images.check_valid_level(UserData.current_level):
+				set_campaign_game(Images.get_level(UserData.current_level))
 			else:
 				push_error("no campaign level available")
 		else:
 			randomize()
-			var choice = int(rand_range(10, Settings.max_level-1))
+			var choice = int(rand_range(10, UserData.max_level-1))
 			if Images.check_valid_level(choice):
 				set_campaign_game(Images.get_level(choice))
 			else:
@@ -159,28 +159,28 @@ func _on_Board_game_started():
 	coin_gain = 0
 	autowin_used = false
 	timer.start(1)
-	if Settings.training_instant_solver_allowed and Settings.instant_solvers > 0:
+	if UserData.training_instant_solver_allowed and UserData.instant_solvers > 0:
 		instant_solve.disabled = false
 
 func _on_Board_game_won():
 	timer.stop()
 	result_display_time.text = clock_display.text
-	if training and Settings.training_track_time and not autowin_used:
-		Settings.check_time(minutes, seconds)
-		result_display_time_best.text = Settings.get_best_time()
+	if training and UserData.training_track_time and not autowin_used:
+		UserData.check_time(minutes, seconds)
+		result_display_time_best.text = UserData.get_best_time()
 		display_time_best_text.visible = !autowin_used
 		display_time_best.visible = display_time_best_text.visible
 	result_display_move.text = str(moves)
-	if training and Settings.training_track_moves and not autowin_used:
-		Settings.check_move(moves)
-		result_display_move_best.text = Settings.get_best_move()
+	if training and UserData.training_track_moves and not autowin_used:
+		UserData.check_move(moves)
+		result_display_move_best.text = UserData.get_best_move()
 		display_move_best_text.visible = !autowin_used
 		display_move_best.visible = display_move_best_text.visible
 	print("game win detected")
 	_anim.play("Victory")
 	if not training:
-		if Settings.current_level <= Settings.max_level:
-			Settings.current_level += 1
+		if UserData.current_level <= UserData.max_level:
+			UserData.current_level += 1
 		#if not autowin_used:
 		var time_xp = int(clamp((par_time - (minutes * 60 + seconds))/10, 1, 18))
 		var move_xp = int(clamp((par_moves - moves)/10, 1, 18))
@@ -195,9 +195,9 @@ func _on_Board_game_won():
 
 func _on_InstantSolve_pressed():
 	autowin_used = true
-	if Settings.instant_solvers > 0:
-		Settings.instant_solvers -= 1
-		solve_display.text = str(Settings.instant_solvers)
+	if UserData.instant_solvers > 0:
+		UserData.instant_solvers -= 1
+		solve_display.text = str(UserData.instant_solvers)
 	board.auto_win()
 
 func _on_OK_pressed():

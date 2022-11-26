@@ -23,20 +23,21 @@ onready var clock = $Tick
 onready var settings_menu = $HUD/Panel/SettingsMenu
 
 func _ready():
+	UserData.load_settings()
 	settings_menu.visible = false
-	track_moves_button.pressed = Settings.training_track_moves
-	track_time_button.pressed = Settings.training_track_time
-	allow_solvers_button.pressed = Settings.training_instant_solver_allowed
-	_set_solvers(Settings.instant_solvers)
-	_set_coins(Settings.coins)
+	track_moves_button.pressed = UserData.training_track_moves
+	track_time_button.pressed = UserData.training_track_time
+	allow_solvers_button.pressed = UserData.training_instant_solver_allowed
+	_set_solvers(UserData.instant_solvers)
+	_set_coins(UserData.coins)
 	panels.rect_position.x = 2 * -360
 	update_display()
 
 func update_display() -> void:
-	_set_solvers(Settings.instant_solvers)
-	_set_coins(Settings.coins)
-	if Images.check_valid_level(Settings.current_level):
-		campaign_button.text = "LEVEL " + str(Settings.current_level + 1)
+	_set_solvers(UserData.instant_solvers)
+	_set_coins(UserData.coins)
+	if Images.check_valid_level(UserData.current_level):
+		campaign_button.text = "LEVEL " + str(UserData.current_level + 1)
 		campaign_button.disabled = false
 		$Panels/Campaign/CampaignStatus.visible = false
 	else:
@@ -72,13 +73,16 @@ func _on_Quit_pressed():
 	emit_signal("quit")
 
 func _on_TrackMoves_toggled(button_pressed):
-	Settings.training_track_moves = button_pressed
+	UserData.training_track_moves = button_pressed
+	UserData.save_settings()
 
 func _on_TrackTime_toggled(button_pressed):
-	Settings.training_track_time = button_pressed
+	UserData.training_track_time = button_pressed
+	UserData.save_settings()
 
 func _on_AllowSolvers_toggled(button_pressed):
-	Settings.training_instant_solver_allowed = button_pressed
+	UserData.training_instant_solver_allowed = button_pressed
+	UserData.save_settings()
 
 func _on_EnergyIcon_pressed():
 	settings_menu.visible = false
@@ -95,12 +99,12 @@ func _set_energy(new_value: int) -> void:
 func _set_coins(new_value: int) -> void:
 	coins = int(clamp(new_value, 0, 99999999))
 	coins_display.text = str(coins)
-	Settings.coins = coins
+	UserData.coins = coins
 
 func _set_solvers(new_value: int) -> void:
 	solvers = int(clamp(new_value, 0, 99999999))
 	solvers_display.text = str(solvers)
-	Settings.instant_solvers = solvers
+	UserData.instant_solvers = solvers
 
 func _on_Tick_timeout():
 	if seconds <= 0:
