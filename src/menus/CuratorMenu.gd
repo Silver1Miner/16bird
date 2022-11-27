@@ -21,6 +21,7 @@ func show_no_funds_warning(rect_pos: Vector2) -> void:
 	add_child(fct)
 	fct.rect_position = rect_pos
 	fct.show_value("Insufficient Funds!", Vector2(0,-8), 1, PI/2,false,Color(1,1,1),2)
+	Audio.play_sound("res://assets/audio/sounds/back_002.ogg")
 
 func update_all() -> void:
 	_set_tokens(UserData.tokens)
@@ -36,6 +37,7 @@ func _on_Coins_pressed():
 		show_no_funds_warning(coin_button.get_global_rect().position + Vector2(0, -30))
 		return
 	emit_signal("coins_spent", 20)
+	Audio.play_throw()
 	roll()
 
 func _on_Trade_pressed():
@@ -43,6 +45,7 @@ func _on_Trade_pressed():
 		show_no_funds_warning(trade_button.get_global_rect().position + Vector2(0, -30))
 		return
 	_set_tokens(tokens - 5)
+	Audio.play_throw()
 	roll()
 
 func roll() -> void:
@@ -63,6 +66,7 @@ func _on_Accept_pressed():
 	result_name.text = ""
 	result_picture.texture = null
 	result.visible = false
+	Audio.play_place()
 	if duplicate:
 		_set_tokens(tokens + 1)
 		duplicate = false

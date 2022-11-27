@@ -1,7 +1,54 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/gui/Theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/menus/StoreMenu.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "ConfirmUp"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Confirm:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Confirm:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 640, -0.25, 0, 0.25, 0, 60, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3 )
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Confirm:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Confirm:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 640, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
 
 [node name="StoreMenu" type="Control"]
 margin_right = 360.0
@@ -68,7 +115,7 @@ margin_right = 320.0
 margin_bottom = 63.0
 mouse_filter = 1
 text = "
-TOOLS"
+BUY TOOLS"
 align = 1
 
 [node name="Solver" type="Panel" parent="ScrollContainer/Display"]
@@ -144,6 +191,41 @@ margin_top = 580.0
 margin_right = 360.0
 margin_bottom = 640.0
 
+[node name="Confirm" type="Panel" parent="."]
+margin_top = 640.0
+margin_right = 360.0
+margin_bottom = 1160.0
+
+[node name="Label" type="Label" parent="Confirm"]
+margin_left = 40.0
+margin_right = 321.0
+margin_bottom = 360.0
+text = "Buy 20 Instant Solvers for 200 Coins?"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Confirm" type="Button" parent="Confirm"]
+margin_left = 60.0
+margin_top = 340.0
+margin_right = 300.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 240, 60 )
+text = "Confirm Purchase"
+
+[node name="Cancel" type="Button" parent="Confirm"]
+margin_left = 60.0
+margin_top = 420.0
+margin_right = 300.0
+margin_bottom = 480.0
+text = "Cancel"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/ConfirmUp = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
 [connection signal="pressed" from="ScrollContainer/Display/Solver/Solve1" to="." method="_on_Solve1_pressed"]
 [connection signal="pressed" from="ScrollContainer/Display/Solver/Solve2" to="." method="_on_Solve2_pressed"]
 [connection signal="pressed" from="ScrollContainer/Display/Solver/Solve3" to="." method="_on_Solve3_pressed"]
+[connection signal="pressed" from="Confirm/Confirm" to="." method="_on_Confirm_pressed"]
+[connection signal="pressed" from="Confirm/Cancel" to="." method="_on_Cancel_pressed"]

@@ -35,8 +35,23 @@ func play_sound(sound_path: String) -> void:
 
 func play_slide() -> void:
 	randomize()
-	var slide = int(rand_range(1,8))
-	play_sound("res://assets/audio/sounds/cardSlide" + str(slide) + ".ogg")
+	var slide = int(rand_range(1,6))
+	play_sound("res://assets/audio/sounds/slides/cardSlide" + str(slide) + ".ogg")
+
+func play_place() -> void:
+	randomize()
+	var place = int(rand_range(1,4))
+	play_sound("res://assets/audio/sounds/place/cardPlace" + str(place) + ".ogg")
+
+func play_collide() -> void:
+	randomize()
+	var collide = int(rand_range(1,4))
+	play_sound("res://assets/audio/sounds/collide/chipsCollide" + str(collide) + ".ogg")
+
+func play_throw() -> void:
+	randomize()
+	var throw = int(rand_range(1,3))
+	play_sound("res://assets/audio/sounds/throw/dieThrow" + str(throw) + ".ogg")
 
 func _process(_delta: float) -> void:
 	if not queue.empty() and not available.empty():

@@ -10,6 +10,7 @@ var moves = 0
 export var par_moves = 100
 export var par_time = 180
 var coin_gain = 0
+onready var tap_to_start = $GameView/BoardView/ColorRect
 onready var restart_button = $GameView/Commands/Restart
 onready var board = $GameView/BoardView/Board
 onready var clock_view = $GameView/Status/Clock
@@ -48,6 +49,7 @@ func get_ready() -> void:
 	restart_button.visible = training
 	solve_display.text = str(UserData.instant_solvers)
 	if training:
+		tap_to_start.visible = true
 		clock_view.visible = UserData.training_track_time
 		moves_view.visible = UserData.training_track_moves
 		solve.visible = UserData.training_instant_solver_allowed
@@ -57,6 +59,7 @@ func get_ready() -> void:
 		else:
 			set_training(Images.get_gallery_image(UserData.current_training_image_index))
 	else:
+		tap_to_start.visible = false
 		display_time_best_text.visible = false
 		display_time_best.visible = false
 		display_move_best_text.visible = false
@@ -113,10 +116,12 @@ func _on_Back_pressed():
 	clock_display.text = "00:00"
 	move_display.text = "0"
 	instant_solve.disabled = true
+	Audio.play_sound("res://assets/audio/sounds/back_002.ogg")
 	emit_signal("back", 0)
 
 func _on_Restart_pressed():
 	if training:
+		tap_to_start.visible = false
 		timer.start(1)
 		seconds = 0
 		minutes = 0
@@ -125,6 +130,7 @@ func _on_Restart_pressed():
 		clock_display.text = "00:00"
 		move_display.text = "0"
 		board.scramble_board()
+		Audio.play_sound("res://assets/audio/sounds/back_002.ogg")
 	else:
 		push_error("cannot restart campaign mission")
 		emit_signal("restart")
@@ -159,13 +165,19 @@ func _on_Board_game_started():
 	coin_gain = 0
 	autowin_used = false
 	timer.start(1)
+	tap_to_start.visible = false
+	Audio.play_place()
 	if training and UserData.training_instant_solver_allowed and UserData.instant_solvers > 0:
 		instant_solve.disabled = false
-	if not training and UserData.instant_solvers > 0:
+	elif not training and UserData.instant_solvers > 0:
 		instant_solve.disabled = false
+	else:
+		instant_solve.disabled = true
 
 func _on_Board_game_won():
+	Audio.play_sound("res://assets/audio/sounds/confirmation_004.ogg")
 	timer.stop()
+	instant_solve.disabled = true
 	result_display_time.text = clock_display.text
 	if training and UserData.training_track_time and not autowin_used:
 		UserData.check_time(minutes, seconds)
@@ -205,6 +217,7 @@ func _on_InstantSolve_pressed():
 func _on_OK_pressed():
 	if _anim.is_playing():
 		return
+	Audio.play_sound("res://assets/audio/sounds/confirmation_004.ogg")
 	emit_signal("back", coin_gain)
 
 func _on_Replay_pressed():
@@ -214,4 +227,5 @@ func _on_Replay_pressed():
 	_anim.play_backwards("Victory")
 
 func _on_Settings_pressed():
+	Audio.play_collide()
 	audio_settings.visible = !audio_settings.visible

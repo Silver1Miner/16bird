@@ -55,6 +55,7 @@ func _on_Cliche_item_selected(index: int) -> void:
 	set_preview(Images.get_level(current_selection))
 	preview.visible = true
 	$Preview/SelectBackground.disabled = false
+	Audio.play_place()
 
 func _on_Birds_item_selected(index: int) -> void:
 	current_folder = 1
@@ -62,6 +63,7 @@ func _on_Birds_item_selected(index: int) -> void:
 	set_preview(Images.get_gallery_image(preview_indices[current_selection]))
 	preview.visible = true
 	$Preview/SelectBackground.disabled = false
+	Audio.play_place()
 
 func _on_Anime_item_selected(index):
 	current_folder = 2
@@ -78,6 +80,7 @@ func _on_Close_pressed():
 	preview.visible = false
 	gallery_cliche.release_focus()
 	gallery_bird.release_focus()
+	Audio.play_collide()
 
 func _on_SelectBackground_pressed():
 	UserData.current_training_image_folder = current_folder
@@ -85,7 +88,9 @@ func _on_SelectBackground_pressed():
 		UserData.current_training_image_index = preview_indices[current_selection]
 	else:
 		UserData.current_training_image_index = current_selection
+	Audio.play_collide()
 	$Preview/SelectBackground.disabled = true
 
 func _on_GalleryFolders_tab_changed(tab: int):
 	current_folder = tab
+	Audio.play_place()

@@ -20,6 +20,7 @@ onready var solvers_display = $HUD/Panel/Solvers/SolversValue
 onready var clock_display = $HUD/Panel/Energy/ClockDisplay
 onready var clock = $Tick
 onready var settings_menu = $HUD/Panel/SettingsMenu
+var ready = false
 
 func _ready():
 	#UserData.load_settings()
@@ -32,6 +33,7 @@ func _ready():
 	_set_coins(UserData.coins)
 	panels.rect_position.x = 2 * -360
 	update_display()
+	ready = true
 
 func update_display() -> void:
 	_set_solvers(UserData.instant_solvers)
@@ -55,12 +57,14 @@ func handle_coin_gain(coin_gain: int) -> void:
 
 func _on_SelectBar_selected(current_select):
 	if tween:
+		$Panels/StoreMenu/AnimationPlayer.play("RESET")
 		settings_menu.visible = false
 		settings_menu.credits_page.visible = false
 		tween.interpolate_property(self, "rect_position:x",
 		rect_position.x, (current_select - 2) * -360, 0.3,
 		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
 		tween.start()
+		Audio.play_slide()
 	$Panels/GalleryMenu.update_all()
 	$Panels/CuratorMenu.update_all()
 
@@ -73,12 +77,18 @@ func _on_FreePlay_pressed():
 
 func _on_TrackMoves_toggled(button_pressed):
 	UserData.training_track_moves = button_pressed
+	if ready:
+		Audio.play_collide()
 
 func _on_TrackTime_toggled(button_pressed):
 	UserData.training_track_time = button_pressed
+	if ready:
+		Audio.play_collide()
 
 func _on_AllowSolvers_toggled(button_pressed):
 	UserData.training_instant_solver_allowed = button_pressed
+	if ready:
+		Audio.play_collide()
 
 func _on_EnergyIcon_pressed():
 	settings_menu.visible = false
@@ -115,6 +125,7 @@ func _on_Tick_timeout():
 
 func _on_SettingsButton_pressed():
 	UserData.save_settings()
+	Audio.play_collide()
 	settings_menu.visible = !settings_menu.visible
 
 func _on_StoreMenu_attempt_purchase_solver(cost: int, count: int):

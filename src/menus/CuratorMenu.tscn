@@ -48,15 +48,15 @@ rect_min_size = Vector2( 320, 280 )
 margin_left = 40.0
 margin_top = 43.0
 margin_right = 320.0
-margin_bottom = 109.0
+margin_bottom = 103.0
 text = "Roll - 20 Coins"
 
 [node name="Trade" type="Button" parent="Options/Panel"]
 margin_left = 40.0
 margin_top = 163.0
 margin_right = 320.0
-margin_bottom = 218.0
-text = "Roll - 5 Trade-in Tokens"
+margin_bottom = 223.0
+text = "Roll - 5 Tokens"
 
 [node name="Tokens" type="HBoxContainer" parent="Options"]
 margin_top = 399.0
@@ -89,6 +89,7 @@ align = 2
 valign = 1
 
 [node name="Result" type="Panel" parent="."]
+visible = false
 margin_top = 60.0
 margin_right = 360.0
 margin_bottom = 540.0

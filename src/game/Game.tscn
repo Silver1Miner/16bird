@@ -112,6 +112,19 @@ margin_top = 20.0
 margin_right = 340.0
 margin_bottom = 340.0
 
+[node name="ColorRect" type="ColorRect" parent="GameView/BoardView"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0, 0, 0, 0.392157 )
+
+[node name="Label" type="Label" parent="GameView/BoardView/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Tap to Start"
+align = 1
+valign = 1
+
 [node name="Status" type="ColorRect" parent="GameView"]
 margin_top = 480.0
 margin_right = 360.0
