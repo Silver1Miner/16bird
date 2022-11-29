@@ -53,6 +53,8 @@ func get_level(level: int) -> Array:
 # warning-ignore:integer_division
 	var s = int(level/10)+1 # +1 because folder numbers start from 1
 	var l = level % 10
+	if s == 1:
+		return training_levels[l]
 	if s == current_s and len(current_s_levels) == 10:
 		return current_s_levels[l]
 	current_s = s

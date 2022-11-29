@@ -126,23 +126,23 @@ rect_min_size = Vector2( 320, 320 )
 mouse_filter = 1
 
 [node name="Solve1" type="Button" parent="ScrollContainer/Display/Solver"]
-margin_left = 60.0
+margin_left = 40.0
 margin_top = 33.0
-margin_right = 260.0
+margin_right = 280.0
 margin_bottom = 93.0
 text = "1 Solver - 30 Coins"
 
 [node name="Solve2" type="Button" parent="ScrollContainer/Display/Solver"]
-margin_left = 60.0
+margin_left = 40.0
 margin_top = 122.0
-margin_right = 260.0
+margin_right = 280.0
 margin_bottom = 182.0
 text = "10 Solvers - 280 Coins"
 
 [node name="Solve3" type="Button" parent="ScrollContainer/Display/Solver"]
-margin_left = 60.0
+margin_left = 40.0
 margin_top = 213.0
-margin_right = 260.0
+margin_right = 280.0
 margin_bottom = 273.0
 text = "20 Solvers - 500 Coins"
 

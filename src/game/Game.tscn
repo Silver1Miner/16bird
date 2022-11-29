@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/board/Board.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/gui/buttons/return.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/gui/Theme.tres" type="Theme" id=6]
 [ext_resource path="res://src/menus/AudioSettings.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/gui/buttons/home.png" type="Texture" id=8]
+[ext_resource path="res://assets/gui/letter.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -55,11 +56,10 @@ margin_right = 360.0
 margin_bottom = 640.0
 custom_constants/separation = 0
 
-[node name="Commands" type="ColorRect" parent="GameView"]
+[node name="Commands" type="Panel" parent="GameView"]
 margin_right = 360.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 360, 120 )
-color = Color( 0, 0, 0, 1 )
 
 [node name="Back" type="TextureButton" parent="GameView/Commands"]
 margin_left = 20.0
@@ -100,11 +100,17 @@ valign = 2
 autowrap = true
 clip_text = true
 
-[node name="BoardView" type="Panel" parent="GameView"]
+[node name="BoardView" type="NinePatchRect" parent="GameView"]
 margin_top = 120.0
 margin_right = 360.0
 margin_bottom = 480.0
 rect_min_size = Vector2( 360, 360 )
+texture = ExtResource( 9 )
+region_rect = Rect2( 20, 20, 220, 220 )
+patch_margin_left = 10
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
 
 [node name="Board" parent="GameView/BoardView" instance=ExtResource( 1 )]
 margin_left = 20.0
@@ -125,17 +131,17 @@ text = "Tap to Start"
 align = 1
 valign = 1
 
-[node name="Status" type="ColorRect" parent="GameView"]
+[node name="Status" type="Panel" parent="GameView"]
 margin_top = 480.0
 margin_right = 360.0
 margin_bottom = 640.0
 rect_min_size = Vector2( 360, 160 )
-color = Color( 0, 0, 0, 1 )
 
 [node name="Clock" type="VBoxContainer" parent="GameView/Status"]
 margin_left = 20.0
+margin_top = 10.0
 margin_right = 100.0
-margin_bottom = 84.0
+margin_bottom = 94.0
 rect_min_size = Vector2( 80, 80 )
 
 [node name="ClockText" type="Label" parent="GameView/Status/Clock"]
@@ -157,8 +163,9 @@ valign = 1
 
 [node name="Solvers" type="VBoxContainer" parent="GameView/Status"]
 margin_left = 120.0
+margin_top = 10.0
 margin_right = 240.0
-margin_bottom = 84.0
+margin_bottom = 94.0
 rect_min_size = Vector2( 80, 80 )
 
 [node name="SolveText" type="Label" parent="GameView/Status/Solvers"]
@@ -180,8 +187,9 @@ valign = 1
 
 [node name="Moves" type="VBoxContainer" parent="GameView/Status"]
 margin_left = 260.0
+margin_top = 10.0
 margin_right = 340.0
-margin_bottom = 84.0
+margin_bottom = 94.0
 rect_min_size = Vector2( 80, 80 )
 
 [node name="MoveText" type="Label" parent="GameView/Status/Moves"]
