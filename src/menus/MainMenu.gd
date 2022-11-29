@@ -47,6 +47,8 @@ func update_display() -> void:
 		$Panels/Campaign/CampaignStatus.visible = true
 		campaign_button.text = "RANDOM!"
 	UserData.save_data()
+	$Panels/GalleryMenu.update_all()
+	$Panels/CuratorMenu.update_all()
 
 func handle_coin_gain(coin_gain: int) -> void:
 	if coin_gain == 0:
@@ -65,8 +67,6 @@ func _on_SelectBar_selected(current_select):
 		Tween.TRANS_QUART, Tween.EASE_IN_OUT)
 		tween.start()
 		Audio.play_slide()
-	$Panels/GalleryMenu.update_all()
-	$Panels/CuratorMenu.update_all()
 
 func _on_Campaign_pressed():
 	emit_signal("to_campaign")

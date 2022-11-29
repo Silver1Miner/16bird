@@ -89,10 +89,10 @@ func save_data() -> void:
 
 func clear_data() -> void:
 	print("clearing all data")
-	instant_solvers = 100
+	instant_solvers = 1
 	coins = 100
 	tokens = 5
-	current_level = 39
+	current_level = 0
 	best_time = 0
 	best_move = 0
 	inventory.clear()
