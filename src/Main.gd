@@ -1,5 +1,10 @@
 extends Control
 
+var version = "v1.0.1.30 "
+
+func _ready() -> void:
+	$MainMenu/HUD/Panel/SettingsMenu.set_version(version)
+
 func _on_MainMenu_to_freeplay():
 	print("to free play")
 	$Game.training = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/ui/SelectBarButton.gd" type="Script" id=1]
 [ext_resource path="res://assets/gui/theme/yellow_panel.png" type="Texture" id=2]
@@ -10,10 +10,6 @@ font_path = "res://assets/gui/font/Chicle-Regular.ttf"
 
 [sub_resource type="DynamicFont" id=4]
 font_data = SubResource( 5 )
-
-[sub_resource type="StreamTexture" id=3]
-flags = 4
-load_path = "res://.import/shoppingCart.png-6b07a6b808f4fab3bd5ffc89dd848cf3.stex"
 
 [node name="Select" type="TextureButton"]
 margin_right = 60.0
@@ -40,7 +36,6 @@ valign = 2
 anchor_right = 1.0
 margin_bottom = 60.0
 mouse_filter = 2
-texture = SubResource( 3 )
 expand = true
 
 [node name="Tween" type="Tween" parent="."]

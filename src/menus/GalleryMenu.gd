@@ -29,15 +29,15 @@ func _on_Jukebox_item_selected(index: int) -> void:
 	UserData.jukebox_index = index
 
 func update_galleries() -> void:
-	gallery_cliche.clear()
-	for i in UserData.current_level:
-		var title_string = Images.get_level(i)[0]
-		if len(title_string) > 36:
-			title_string = title_string.left(36) + "..."
-		gallery_cliche.add_item(title_string)
-		gallery_cliche.set_item_tooltip_enabled(i, false)
+	if UserData.current_level >= gallery_cliche.get_item_count():
+		for i in UserData.current_level:
+			if i >= gallery_cliche.get_item_count():
+				var title_string = Images.get_level(i)[0]
+				if len(title_string) > 36:
+					title_string = title_string.left(36) + "..."
+				gallery_cliche.add_item(title_string)
+				gallery_cliche.set_item_tooltip_enabled(i, false)
 	gallery_bird.clear()
-	#gallery_anime.clear()
 	var j = 0
 	preview_indices.clear()
 	for i in UserData.inventory:

@@ -5,10 +5,14 @@ signal clear_data()
 onready var confirm_delete_button = $Delete/ConfirmDelete
 onready var set_delete_button = $Delete/SetDelete
 onready var credits_page = $Credits
+onready var version = $Credits/Version
 
 func _ready():
 	confirm_delete_button.disabled = true
 	credits_page.visible = false
+
+func set_version(text: String) -> void:
+	version.text = text
 
 func _on_SetDelete_toggled(button_pressed: bool):
 	confirm_delete_button.disabled = !button_pressed

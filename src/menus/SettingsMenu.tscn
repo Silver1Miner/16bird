@@ -67,7 +67,6 @@ margin_bottom = 539.0
 text = "Credits"
 
 [node name="Credits" type="Panel" parent="."]
-visible = false
 margin_top = 60.0
 margin_right = 360.0
 margin_bottom = 580.0
@@ -82,7 +81,7 @@ texture_pressed = ExtResource( 4 )
 texture_disabled = ExtResource( 4 )
 expand = true
 
-[node name="Label" type="Label" parent="Credits"]
+[node name="Credits" type="Label" parent="Credits"]
 margin_left = 20.0
 margin_top = 80.0
 margin_right = 340.0
@@ -101,6 +100,15 @@ kenney
 public domain
 "
 align = 1
+
+[node name="Version" type="Label" parent="Credits"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -80.0
+margin_top = -60.0
+text = "v0.0.0 "
 
 [connection signal="toggled" from="Delete/SetDelete" to="." method="_on_SetDelete_toggled"]
 [connection signal="pressed" from="Delete/ConfirmDelete" to="." method="_on_ConfirmDelete_pressed"]
