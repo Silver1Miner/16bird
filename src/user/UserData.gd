@@ -3,12 +3,12 @@ extends Node
 var training_track_time = true # setting
 var training_track_moves = true # setting
 var training_instant_solver_allowed = true # setting
-var instant_solvers = 3 # progress
+var instant_solvers = 1 # progress
 var coins = 100 # progress
 var tokens = 5 # progress
 var mute_sound = false # setting
 var mute_music = false # setting
-var current_level = 29 # progress
+var current_level = 0 # progress
 var max_level = 70 # GAME PARMETER
 var best_time = 0 # progress
 var best_move = 0 # progrees
